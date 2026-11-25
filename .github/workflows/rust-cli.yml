@@ -33,7 +33,7 @@ jobs:
       - name: Prepare pnpm
         run: |
           corepack enable
-          corepack prepare "$(node -p 'require("./package.json").packageManager')" --activate
+          corepack prepare pnpm@10.33.2 --activate
       - name: Prepare Rust and nextest
         run: |
           cargo --version
