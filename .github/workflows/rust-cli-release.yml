@@ -134,3 +134,38 @@ jobs:
           path: dist/rust-cli-npm
       - name: Publish platform packages and entry via npm OIDC
         run: node scripts/npm/publish.mjs dist/rust-cli-npm
+
+  release:
+    if: github.ref == 'refs/heads/main'
+    needs: [prepare, build]
+    name: Upload platform binaries to GitHub Release
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: npm-*
+          merge-multiple: true
+          path: dist/rust-cli-npm
+      - name: Create or update GitHub Release and upload platform binaries
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ needs.prepare.outputs.version }}
+          release_name: rust-cli v${{ needs.prepare.outputs.version }}
+          body: |
+            从 main 分支自动构建的各平台二进制包（版本 ${{ needs.prepare.outputs.version }}）。
+
+            平台包：
+            - darwin-arm64：Apple Silicon macOS
+            - linux-x64-gnu：x86_64 Linux（glibc）
+            - linux-arm64-gnu：ARM64 Linux（glibc）
+            - win32-x64：Windows x64
+            - win32-arm64：Windows ARM64
+
+            每次推送到 main 都会复用同一版本的 Release 并覆盖同名资产文件。npm 包的发布仍通过 `workflow_dispatch` + `publish` 手动触发。
+          reuse_releases: true
+          overwrite: true
+          files: dist/rust-cli-npm/mbearo-zcode-*-*.tgz
+          draft: false
+          prerelease: false
