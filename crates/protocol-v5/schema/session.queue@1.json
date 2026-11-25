@@ -1,0 +1,203 @@
+{
+  "key": "session.queue@1",
+  "schemas": {
+    "Command.queue.applyConfig": {
+      "type": "object",
+      "properties": {
+        "queueItemIds": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "modelSelection": {
+          "type": "object",
+          "properties": {
+            "providerId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "modelId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "options": {
+              "type": "object",
+              "properties": {
+                "reasoningLevel": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "providerId",
+            "modelId"
+          ],
+          "additionalProperties": false
+        },
+        "mode": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "queueItemIds"
+      ],
+      "additionalProperties": false
+    },
+    "Command.queue.delete": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    },
+    "Command.queue.edit": {
+      "type": "object",
+      "properties": {
+        "newText": {
+          "type": "string"
+        },
+        "editorId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attachments": {
+          "type": "array",
+          "items": {}
+        },
+        "quotes": {
+          "maxItems": 8,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "maxLength": 8000
+              },
+              "path": {
+                "type": "string"
+              },
+              "senderName": {
+                "type": "string"
+              },
+              "senderId": {
+                "type": "string"
+              },
+              "messageId": {
+                "type": "string"
+              },
+              "sentAt": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "modelSelection": {
+          "type": "object",
+          "properties": {
+            "providerId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "modelId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "options": {
+              "type": "object",
+              "properties": {
+                "reasoningLevel": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "providerId",
+            "modelId"
+          ],
+          "additionalProperties": false
+        },
+        "mode": {
+          "type": "string"
+        },
+        "planEnabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "newText"
+      ],
+      "additionalProperties": false
+    },
+    "Command.queue.lockEdit": {
+      "type": "object",
+      "properties": {
+        "editorId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "editorId"
+      ],
+      "additionalProperties": false
+    },
+    "Command.queue.reorder": {
+      "type": "object",
+      "properties": {
+        "beforeId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "beforeId"
+      ],
+      "additionalProperties": false
+    },
+    "Command.queue.sendNow": {
+      "type": "object",
+      "properties": {
+        "turnId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "Command.queue.setAutoDrain": {
+      "type": "object",
+      "properties": {
+        "autoDrain": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "autoDrain"
+      ],
+      "additionalProperties": false
+    },
+    "Command.queue.unlockEdit": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    }
+  },
+  "fallbacks": {},
+  "opaque": [
+    "Command.queue.edit.attachments[]"
+  ]
+}

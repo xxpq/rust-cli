@@ -1,0 +1,4 @@
+- id: {{id}}
+  skills: [{{skills}}]
+  mcp_servers: [{{mcp_servers}}]
+  subagents: [{{subagents}}]

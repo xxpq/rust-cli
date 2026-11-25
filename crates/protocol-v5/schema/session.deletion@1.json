@@ -1,0 +1,192 @@
+{
+  "key": "session.deletion@1",
+  "schemas": {
+    "Command.sessionData.deletionExecute": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]+$"
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "sessionId",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "CommandResult.sessionData.deletionExecute": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "deleted",
+            "blocked",
+            "incomplete"
+          ]
+        },
+        "sessionIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "default": []
+        },
+        "retainedArtifacts": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991,
+          "default": 0
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sessionId",
+        "status"
+      ]
+    },
+    "Query.sessionData.deletionPreview.params": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]+$"
+        }
+      },
+      "required": [
+        "sessionId"
+      ]
+    },
+    "Query.sessionData.deletionPreview.result": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string"
+        },
+        "sessionIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "default": []
+        },
+        "forks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sessionId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "title": {
+                "type": "string",
+                "default": ""
+              }
+            },
+            "required": [
+              "sessionId"
+            ]
+          },
+          "default": []
+        },
+        "retainedArtifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sessionId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "artifactId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "fileName": {
+                "type": "string"
+              },
+              "referrers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "sessionId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "title": {
+                      "type": "string",
+                      "default": ""
+                    }
+                  },
+                  "required": [
+                    "sessionId"
+                  ]
+                },
+                "default": []
+              }
+            },
+            "required": [
+              "sessionId",
+              "artifactId",
+              "fileName"
+            ]
+          },
+          "default": []
+        },
+        "deletedFiles": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991,
+          "default": 0
+        },
+        "blockedReason": {
+          "type": "string",
+          "enum": [
+            "running",
+            "in-use",
+            "not-found",
+            "not-archived",
+            "unavailable",
+            "changed"
+          ]
+        },
+        "incomplete": {
+          "type": "boolean",
+          "default": false
+        },
+        "completed": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "sessionId",
+        "revision"
+      ]
+    }
+  },
+  "fallbacks": {
+    "CommandResult.sessionData.deletionExecute.status": "blocked",
+    "Query.sessionData.deletionPreview.result.blockedReason": "unavailable"
+  },
+  "opaque": []
+}

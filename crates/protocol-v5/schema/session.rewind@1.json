@@ -1,0 +1,427 @@
+{
+  "key": "session.rewind@1",
+  "schemas": {
+    "Command.files.rewind": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    },
+    "Command.turn.edit": {
+      "type": "object",
+      "properties": {
+        "newText": {
+          "type": "string"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {}
+        },
+        "quotes": {
+          "maxItems": 8,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "maxLength": 8000
+              },
+              "path": {
+                "type": "string"
+              },
+              "senderName": {
+                "type": "string"
+              },
+              "senderId": {
+                "type": "string"
+              },
+              "messageId": {
+                "type": "string"
+              },
+              "sentAt": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "modelSelection": {
+          "type": "object",
+          "properties": {
+            "providerId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "modelId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "options": {
+              "type": "object",
+              "properties": {
+                "reasoningLevel": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "providerId",
+            "modelId"
+          ],
+          "additionalProperties": false
+        },
+        "modelExecution": {
+          "type": "object",
+          "properties": {
+            "selection": {
+              "type": "object",
+              "properties": {
+                "providerId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "modelId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "options": {
+                  "type": "object",
+                  "properties": {
+                    "reasoningLevel": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "providerId",
+                "modelId"
+              ],
+              "additionalProperties": false
+            },
+            "credential": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "highspeedCard"
+                    },
+                    "cardId": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "cardId"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "fallback": {
+              "type": "object",
+              "properties": {
+                "rules": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "reason": {
+                        "type": "string",
+                        "enum": [
+                          "highspeed_card_expired",
+                          "highspeed_request_failed",
+                          "highspeed_selection_unavailable"
+                        ]
+                      },
+                      "providerErrorCode": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "reason"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "unavailable": {
+                  "type": "string",
+                  "enum": [
+                    "highspeed_card_expired",
+                    "highspeed_request_failed",
+                    "highspeed_selection_unavailable"
+                  ]
+                }
+              },
+              "required": [
+                "rules",
+                "unavailable"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "selection"
+          ],
+          "additionalProperties": false
+        },
+        "highspeedMeta": {
+          "type": "object",
+          "properties": {
+            "schemaVersion": {
+              "type": "number",
+              "const": 1
+            },
+            "cardId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "taskId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "provider": {
+              "type": "string",
+              "minLength": 1
+            },
+            "model": {
+              "type": "string",
+              "minLength": 1
+            },
+            "issuedAt": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "expiresAt": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "regularTps": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          },
+          "required": [
+            "schemaVersion",
+            "cardId",
+            "taskId",
+            "provider",
+            "model",
+            "issuedAt",
+            "expiresAt"
+          ],
+          "additionalProperties": false
+        },
+        "mode": {
+          "type": "string"
+        },
+        "planEnabled": {
+          "type": "boolean"
+        },
+        "workspaceMode": {
+          "type": "string",
+          "enum": [
+            "preserve",
+            "rewind"
+          ]
+        }
+      },
+      "required": [
+        "newText"
+      ],
+      "additionalProperties": false
+    },
+    "Command.turn.retry": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    },
+    "CommandResult.turn.edit": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "type": "string",
+          "enum": [
+            "rewind",
+            "blocked"
+          ]
+        },
+        "reasonCode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "preview": {}
+      },
+      "required": [
+        "disposition"
+      ]
+    },
+    "Query.session.fileRewindPreview.params": {
+      "type": "object",
+      "properties": {
+        "rowId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "rowId"
+      ]
+    },
+    "Query.session.fileRewindPreview.result": {
+      "type": "object",
+      "properties": {
+        "canApply": {
+          "type": "boolean"
+        },
+        "ignoredFiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "operationCount": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reason": {
+                "type": "string",
+                "const": "bash_ignored"
+              },
+              "toolNames": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              }
+            },
+            "required": [
+              "operationCount",
+              "path",
+              "reason"
+            ]
+          }
+        },
+        "safeFiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "restore",
+                  "delete"
+                ]
+              },
+              "operationCount": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "toolNames": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              }
+            },
+            "required": [
+              "action",
+              "operationCount",
+              "path"
+            ]
+          }
+        },
+        "unsafeFiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "currentHash": {
+                "type": "string"
+              },
+              "expectedHash": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "operationCount": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reason": {
+                "type": "string",
+                "enum": [
+                  "checkpoint_missing",
+                  "checkpoint_unreadable",
+                  "external_modified",
+                  "file_read_failed",
+                  "unsupported_checkpoint"
+                ]
+              },
+              "toolNames": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              }
+            },
+            "required": [
+              "operationCount",
+              "path",
+              "reason"
+            ]
+          }
+        }
+      },
+      "required": [
+        "canApply",
+        "ignoredFiles",
+        "safeFiles",
+        "unsafeFiles"
+      ]
+    }
+  },
+  "fallbacks": {
+    "CommandResult.turn.edit.disposition": "blocked",
+    "Query.session.fileRewindPreview.result.safeFiles[].action": "restore",
+    "Query.session.fileRewindPreview.result.unsafeFiles[].reason": "unsupported_checkpoint"
+  },
+  "opaque": [
+    "Command.turn.edit.attachments[]",
+    "CommandResult.turn.edit.preview"
+  ]
+}

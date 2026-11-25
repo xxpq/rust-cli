@@ -1,0 +1,169 @@
+#!/usr/bin/env node
+// packages/rust-cli 的边界检查（docs/specs/rust-cli/README.md §3.1、§3.2、§4）。
+//
+// 规则表在 boundaries/policy.mjs，检查逻辑在 boundaries/check.mjs（纯函数，boundaries/check.test.mjs 每类
+// 违规一个用例）。这里只收集输入：
+// - 依赖图取自 `cargo metadata`（Cargo 自己解析，表格写法、`package =` 改名、按平台的依赖都按真实包名）；
+// - 每个 crate 的 .rs 文件、根与 crate 自己的 clippy.toml；
+// - 接口快照的源码与已提交的 interfaces.json（boundaries/interfaces.mjs）；
+// - 内核不认识部署形态（docs/specs/rust-cli/architecture.md §3）：内核层不出现“云端”“租户”的词，端口 trait 上没有
+//   “种类”方法（boundaries/deployment.mjs）；
+// - 解耦检查（docs/specs/rust-cli/app-protocol.md §9）：协议适配层的依赖、词汇、按前端分支、feature（boundaries/decoupling.mjs）；
+// - 厂商错误的解耦（docs/specs/rust-cli/provider-errors.md §2.5）：厂商码与厂商专有的字符串只在 model 的 errors/
+//   （boundaries/vendor.mjs）；
+// - 容易变的字符串（README §4.1 第 6 条，工作线 F121）：模型 ID、主机名与环境变量名只在常量模块里（boundaries/literals.mjs），
+//   另收 scripts/rust-cli 下的 JS 源码；
+// - 散写数字的棘轮（docs/specs/rust-cli/constants.md §4，F122）：每个文件的处数与已提交的 numbers.json 相等
+//   （boundaries/numbers.mjs）；
+// - 枢纽 DTO 只经 kernel-api 的构造函数建（README §4.1 第 7 条，F126）：别的 crate 不写完整的结构体字面量
+//   （boundaries/constructors.mjs）。
+// README 表格与规则表的一致性只在本仓库检查（scripts/rust-cli/repo-only/check.mjs，工作线 F60）。
+import { execFile } from "node:child_process";
+import { readdir, readFile } from "node:fs/promises";
+import { relative, resolve, sep } from "node:path";
+import { promisify } from "node:util";
+
+import {
+  checkBlastRadius,
+  checkClippy,
+  checkDefinitions,
+  checkGraph,
+  checkLocalFiles,
+  checkSources,
+  checkStableDependencies,
+  internalGraph,
+  parseClippy,
+} from "./boundaries/check.mjs";
+import {
+  checkFeatures,
+  checkFrontendBranching,
+  checkProtocolLayering,
+  checkVocabulary,
+} from "./boundaries/decoupling.mjs";
+import { checkConstructors } from "./boundaries/constructors.mjs";
+import { checkDeploymentNeutral } from "./boundaries/deployment.mjs";
+import { SNAPSHOT, checkInterfaces, readSources, snapshot } from "./boundaries/interfaces.mjs";
+import { checkVolatileLiterals } from "./boundaries/literals.mjs";
+import * as policy from "./boundaries/policy.mjs";
+import { checkNumbers, countNumbers, readBaseline } from "./boundaries/numbers.mjs";
+import { checkVendorTerms } from "./boundaries/vendor.mjs";
+
+const root = resolve(import.meta.dirname, "../../packages/rust-cli");
+const crates = resolve(root, "crates");
+
+async function* files(directory) {
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const path = resolve(directory, entry.name);
+    if (entry.isDirectory()) {
+      if (entry.name !== "target") yield* files(path);
+    } else yield path;
+  }
+}
+
+async function optional(path) {
+  try {
+    return await readFile(path, "utf8");
+  } catch (error) {
+    if (error.code === "ENOENT") return null;
+    throw error;
+  }
+}
+
+const { stdout } = await promisify(execFile)(
+  "cargo",
+  [
+    "metadata",
+    "--format-version",
+    "1",
+    "--locked",
+    "--no-deps",
+    "--manifest-path",
+    resolve(root, "Cargo.toml"),
+  ],
+  // 在 packages/rust-cli 下执行：rustup 只从当前目录往上找 rust-toolchain.toml（工作线 F46）。
+  { cwd: root, maxBuffer: 64 * 1024 * 1024 },
+);
+const metadata = JSON.parse(stdout);
+const members = new Set(metadata.workspace_members);
+const crateOf = (manifest) => relative(crates, resolve(manifest, "..")).split(sep)[0];
+const packages = metadata.packages
+  .filter((entry) => members.has(entry.id))
+  .map((entry) => ({
+    crate: crateOf(entry.manifest_path),
+    manifest: relative(root, entry.manifest_path).replaceAll("\\", "/"),
+    dependencies: entry.dependencies,
+    features: Object.keys(entry.features ?? {}),
+  }));
+const internal = new Map(
+  metadata.packages
+    .filter((entry) => members.has(entry.id))
+    .map((entry) => [entry.name, crateOf(entry.manifest_path)]),
+);
+const isInside = (path) => resolve(path) === root || resolve(path).startsWith(root + sep);
+
+const sources = [];
+const crateClippy = {};
+for (const entry of await readdir(crates, { withFileTypes: true })) {
+  if (!entry.isDirectory()) continue;
+  const directory = resolve(crates, entry.name);
+  for await (const path of files(directory)) {
+    if (path.endsWith(".rs")) {
+      sources.push({
+        crate: entry.name,
+        file: relative(root, path).replaceAll("\\", "/"),
+        text: await readFile(path, "utf8"),
+      });
+    }
+  }
+  for (const name of ["clippy.toml", ".clippy.toml"]) {
+    const text = await optional(resolve(directory, name));
+    if (text !== null) crateClippy[entry.name] = text;
+  }
+}
+const rootClippy = await readFile(resolve(root, "clippy.toml"), "utf8");
+
+// scripts/rust-cli 下的 JS 源码（路径相对仓库根），给容易变的字符串的检查。
+const repo = resolve(root, "../..");
+const scripts = [];
+for await (const path of files(resolve(repo, "scripts/rust-cli"))) {
+  if (/\.(?:mjs|mts|js)$/.test(path) && !path.split(sep).includes("node_modules"))
+    scripts.push({
+      file: relative(repo, path).replaceAll("\\", "/"),
+      text: await readFile(path, "utf8"),
+    });
+}
+
+// 三类检查（docs/specs/rust-cli/remote-exec.md §15.6）：依赖图之外的波及范围、稳定依赖与接口快照。
+const graph = internalGraph(packages, internal);
+const interfaceSources = await readSources(root);
+const failures = [
+  ...checkGraph(policy, packages, internal, isInside),
+  ...checkBlastRadius(policy, graph),
+  ...checkStableDependencies(policy, graph),
+  ...checkInterfaces(interfaceSources, JSON.parse(await readFile(SNAPSHOT, "utf8"))),
+  // 内核不认识部署形态（architecture.md §3）：词汇，与端口 trait 上的“种类”方法。
+  ...checkDeploymentNeutral(policy, sources, snapshot(interfaceSources).ports),
+  ...checkClippy(policy, rootClippy, crateClippy),
+  ...checkSources(policy, parseClippy(rootClippy).entries, sources),
+  ...checkDefinitions(policy, sources),
+  // 路径一律指执行侧（deployment.md §21、§25）：cli 碰本机文件只许白名单里的文件。
+  ...checkLocalFiles(policy, sources),
+  // 解耦（app-protocol.md §9）：协议适配层不入侵内核。
+  ...checkProtocolLayering(policy, graph),
+  ...checkVocabulary(policy, sources),
+  ...checkFrontendBranching(policy, sources),
+  ...checkFeatures(policy, packages),
+  // 厂商错误（provider-errors.md §2.5）：第 2 层与 query 等只认中性分类。
+  ...checkVendorTerms(policy, sources),
+  // 容易变的字符串（README §4.1 第 6 条）：模型 ID、主机名与环境变量名只在常量模块里。
+  ...checkVolatileLiterals(policy, sources, scripts),
+  // 有含义的数字是命名常量（constants.md §4）：散写的处数只许降低。
+  ...checkNumbers(countNumbers(sources, policy.NUMBER_ALLOWED), await readBaseline()),
+  // 枢纽 DTO 的构造（README §4.1 第 7 条）：加字段时只改 kernel-api。
+  ...checkConstructors(policy, sources),
+];
+
+if (failures.length) {
+  for (const failure of failures) console.error(failure);
+  process.exitCode = 1;
+} else console.log("rust-cli boundaries: OK");

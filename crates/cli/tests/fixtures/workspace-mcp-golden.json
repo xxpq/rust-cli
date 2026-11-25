@@ -1,0 +1,244 @@
+[
+  {
+    "name": "stdio servers with every optional field, legacy names and odd env keys",
+    "servers": {
+      "absolute": {
+        "declarationDigest": "730c858b7a02fd67d858e64512d51e2e2ce59745a9ed3660cfcae94cc18f4913",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c0/repo/.zcode/config.json"]
+      },
+      "bare": {
+        "declarationDigest": "f21e6d7fd938f31422519fa4b2b178c7c0c69814d62b988b1e2a1791222f52cd",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c0/repo/.zcode/config.json"]
+      },
+      "full": {
+        "declarationDigest": "5f2c46616f0b5818ffac8caad233bf8158e381a968910a316e6d4d29ceb67512",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c0/repo/.zcode/config.json"]
+      },
+      "legacy": {
+        "declarationDigest": "a3033e20c3d4bf61cb2f9cf2f120a0dab6a2af7ff0d769fab3d6dd4bf4a08f4b",
+        "configuredEnabled": false,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c0/repo/.zcode/config.json"]
+      },
+      "quoted": {
+        "declarationDigest": "c379a0d43b00ece1861b94682dfe0c66fb34cab25f3318aca53550e39663cd5e",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c0/repo/.zcode/config.json"]
+      }
+    }
+  },
+  {
+    "name": "http and sse servers, oauth, headers and legacy remote names",
+    "servers": {
+      "api": {
+        "declarationDigest": "857148ab45f9b48e51fd39103ca63a6e722b8f50f61f240b93c9640e917dc3e9",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c1/repo/zcode.json"]
+      },
+      "events": {
+        "declarationDigest": "2c4f1628cf8423215c2bbfe79ffaf1aa956f80ae18e723278dc93b1e3990150a",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c1/repo/zcode.json"]
+      },
+      "inferred": {
+        "declarationDigest": "fef295165f33317e71d72841e516f8a33d3d87af9943ddd4165f0021a8e746ca",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c1/repo/zcode.json"]
+      },
+      "off": {
+        "declarationDigest": "fbd31204aad3dade2b8ac00ec92c83c40b899dbf2be4b2fdcbf5692fc56d1d77",
+        "configuredEnabled": false,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c1/repo/zcode.json"]
+      },
+      "old": {
+        "declarationDigest": "b53efaa1142fc83901bd1555fe7bbcfeba2b2c937e759ac629a47da6a2ff54e6",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c1/repo/zcode.json"]
+      }
+    }
+  },
+  {
+    "name": "an ancestor zcode.json declares, the user level shadows one, a nearer file has no servers",
+    "servers": {
+      "outer": {
+        "declarationDigest": "7af4c91b2ac5a0c1e89f5fe05c53b1ffe3fb3f0ebf2bdd92f8acaebab7cbb0f1",
+        "configuredEnabled": true,
+        "sourcePaths": [
+          "/tmp/zcode-mcp-digest-golden/c2/repo/zcode.json",
+          "/tmp/zcode-mcp-digest-golden/c2/repo/app/zcode.json"
+        ]
+      },
+      "top": {
+        "declarationDigest": "0f35a0a9e4ae5b0ee9f663ece2da8cea818b8918a34cedb4e61da1f3139902de",
+        "configuredEnabled": true,
+        "sourcePaths": [
+          "/tmp/zcode-mcp-digest-golden/c2/repo/zcode.json",
+          "/tmp/zcode-mcp-digest-golden/c2/repo/app/zcode.json"
+        ]
+      }
+    }
+  },
+  {
+    "name": "a .zcode/config.json in an ancestor resolves cwd from the directory above .zcode",
+    "servers": {
+      "dot": {
+        "declarationDigest": "ac2e2dfa3ef7900d2a0efc3dbe3a54ddc845e9c06bc0b93bb4c25d534611582d",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c3/repo/.zcode/config.json"]
+      },
+      "up": {
+        "declarationDigest": "ddd24f8e8b67508fa1265f9664867b4d0f496a9c2aea0d646762df97859f0cd7",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c3/repo/.zcode/config.json"]
+      }
+    }
+  },
+  {
+    "name": "the nearer layer replaces a server with the same name",
+    "servers": {
+      "both": {
+        "declarationDigest": "d068f78d63fb6e3e8799ebca0d308748de7810c7d0a8805e4679e2dc1632cda8",
+        "configuredEnabled": true,
+        "sourcePaths": [
+          "/tmp/zcode-mcp-digest-golden/c4/repo/zcode.json",
+          "/tmp/zcode-mcp-digest-golden/c4/repo/app/.zcode/config.json"
+        ]
+      }
+    }
+  },
+  {
+    "name": "windows unwraps cmd /c",
+    "servers": {
+      "notWrapped": {
+        "declarationDigest": "d19606daee0bd77b4a798996b5046e7ad6eb67b34ecb8d1aa621e5f9fcb73044",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c5/repo/.zcode/config.json"]
+      },
+      "nothingInside": {
+        "declarationDigest": "6308864caa2a0cf75f282f425101da5812d5d38bb0b65f7a24edcb80f43c02e0",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c5/repo/.zcode/config.json"]
+      },
+      "wrapped": {
+        "declarationDigest": "b2c0d818139a2e5c2c633f8e3ac57c36bc5a18771986b9af6946ba08507b6766",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c5/repo/.zcode/config.json"]
+      },
+      "wrappedExe": {
+        "declarationDigest": "e56b0ad4dbc1b63faeab3248565024f82f4a472b9c45eefa8c9a72d84b66d4d9",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c5/repo/.zcode/config.json"]
+      }
+    }
+  },
+  {
+    "name": "a broken project file blocks every declaration",
+    "servers": {}
+  },
+  {
+    "name": "no git marker: only the workspace root",
+    "servers": {
+      "here": {
+        "declarationDigest": "4a6cea2dbc1dcf79cb64c5b4e09caa26ab1ddeff49c853b5e281694c2e9fd5a2",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c7/ws/zcode.json"]
+      }
+    }
+  },
+  {
+    "name": "only .agents/mcp.json: every entry is checked on its own and a relative cwd is the workspace root",
+    "servers": {
+      "absolute": {
+        "declarationDigest": "e9f1a5b679616e8e6ca54044b63ebab52cc09f87d7c8d27d09b480ef0e940ead",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c8/repo/.agents/mcp.json"]
+      },
+      "off": {
+        "declarationDigest": "628a9453af0b1e1112ba19f0625f82b46e92f52c9520e6cd72cee1aa933481ea",
+        "configuredEnabled": false,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c8/repo/.agents/mcp.json"]
+      },
+      "plain": {
+        "declarationDigest": "eb5e80790f5f87c1fe1b56ee0db26abd0ab3372adc190322641847559e834a3b",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c8/repo/.agents/mcp.json"]
+      },
+      "relative": {
+        "declarationDigest": "f53e9d59f0701b11d5e904938a0866ae46e3d06dd8473b36e58d44a4ec3ffdca",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c8/repo/.agents/mcp.json"]
+      },
+      "remote": {
+        "declarationDigest": "8366bc3d4cb78f9e346fcfd8e5232f9fe07e9d6452ab6deac399bd4702d046fb",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c8/repo/.agents/mcp.json"]
+      }
+    }
+  },
+  {
+    "name": "the project config declares a server: .agents/mcp.json is not read",
+    "servers": {
+      "project": {
+        "declarationDigest": "fa335514bfa7bb766c9d8d0596e2d87a0b94041ab586b253b8f38a0332186c70",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c9/repo/.zcode/config.json"]
+      }
+    }
+  },
+  {
+    "name": "an invalid project entry also keeps .agents/mcp.json out",
+    "servers": {}
+  },
+  {
+    "name": "a project mcp.servers that is not an object keeps .agents/mcp.json out",
+    "servers": {}
+  },
+  {
+    "name": "an empty project map falls back; the user level shadows one name; sourcePaths is only .agents/mcp.json",
+    "servers": {
+      "theirs": {
+        "declarationDigest": "2027b273b0aa0e9ee8153926745dfc644ef86311b44556b81edffd77752e2232",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c12/repo/.agents/mcp.json"]
+      }
+    }
+  },
+  {
+    "name": "only the workspace root has the fallback file, not the git root",
+    "servers": {
+      "inner": {
+        "declarationDigest": "71fac989420d335d05adfb1c236f437d7fff1527975734c26772c3550b53aefd",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c13/repo/app/.agents/mcp.json"]
+      }
+    }
+  },
+  {
+    "name": "a broken project file keeps .agents/mcp.json out",
+    "servers": {}
+  },
+  {
+    "name": "a broken .agents/mcp.json declares nothing",
+    "servers": {}
+  },
+  {
+    "name": "mcpServers that is not an object declares nothing",
+    "servers": {}
+  },
+  {
+    "name": "a .agents/mcp.json in the config shape declares nothing",
+    "servers": {}
+  },
+  {
+    "name": "the user-level ~/.agents/mcp.json does not hide a project declaration with the same name",
+    "servers": {
+      "both": {
+        "declarationDigest": "9b53981182198bdaaf83ce77ebc251144177d14a752a865c84e911d876c4a06d",
+        "configuredEnabled": true,
+        "sourcePaths": ["/tmp/zcode-mcp-digest-golden/c18/repo/.zcode/config.json"]
+      }
+    }
+  }
+]

@@ -1,0 +1,331 @@
+{
+  "credentials": "/Users/dev/.zcode/v2/credentials.json",
+  "prefixes": [
+    {
+      "server": "docs",
+      "url": "https://mcp.example.com/mcp",
+      "oauth": {},
+      "prefix": "mcp:oauth:99cb0eafcadf3bb99a57b875",
+      "lock": "/Users/dev/.zcode/v2/mcp-oauth-99cb0eafcadf3bb99a57b875.refresh"
+    },
+    {
+      "server": "plugin:kit:canva",
+      "url": "https://mcp.example.com/sse?x=1",
+      "oauth": {
+        "clientId": "c1",
+        "scope": "a b",
+        "redirectPath": "/cb"
+      },
+      "prefix": "mcp:oauth:24f3b3e1142fc24b302b2075",
+      "lock": "/Users/dev/.zcode/v2/mcp-oauth-24f3b3e1142fc24b302b2075.refresh"
+    },
+    {
+      "server": "中文 名",
+      "url": "http://127.0.0.1:8080/mcp",
+      "oauth": {
+        "scope": "files:read"
+      },
+      "prefix": "mcp:oauth:be890e87617907964a8c9039",
+      "lock": "/Users/dev/.zcode/v2/mcp-oauth-be890e87617907964a8c9039.refresh"
+    }
+  ],
+  "pairs": [
+    {
+      "name": "nothing",
+      "input": {},
+      "expected": null
+    },
+    {
+      "name": "legacy only",
+      "input": {
+        "legacyClientRaw": "{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]}",
+        "legacyTokensRaw": "{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"}"
+      },
+      "expected": {
+        "client": {
+          "client_id": "dyn-1",
+          "redirect_uris": [
+            "http://127.0.0.1:1/cb"
+          ]
+        },
+        "tokens": {
+          "access_token": "at-1",
+          "token_type": "Bearer",
+          "expires_in": 3600,
+          "refresh_token": "rt-1"
+        },
+        "raw": null,
+        "generation": null
+      }
+    },
+    {
+      "name": "legacy client only",
+      "input": {
+        "legacyClientRaw": "{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]}"
+      },
+      "expected": {
+        "client": {
+          "client_id": "dyn-1",
+          "redirect_uris": [
+            "http://127.0.0.1:1/cb"
+          ]
+        },
+        "tokens": null,
+        "raw": null,
+        "generation": null
+      }
+    },
+    {
+      "name": "v2 with matching mirrors",
+      "input": {
+        "canonicalRaw": "{\"client_information\":{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]},\"expires_at\":1700003600000,\"generation\":\"0123456789abcdef0123456789abcdef\",\"issuer\":\"https://auth.example.com\",\"obtained_at\":1700000000000,\"published_by\":\"tx\",\"tokens\":{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"},\"version\":2}",
+        "legacyClientRaw": "{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]}",
+        "legacyTokensRaw": "{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"}"
+      },
+      "expected": {
+        "client": {
+          "client_id": "dyn-1",
+          "redirect_uris": [
+            "http://127.0.0.1:1/cb"
+          ]
+        },
+        "tokens": {
+          "access_token": "at-1",
+          "token_type": "Bearer",
+          "expires_in": 3600,
+          "refresh_token": "rt-1"
+        },
+        "raw": "{\"client_information\":{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]},\"expires_at\":1700003600000,\"generation\":\"0123456789abcdef0123456789abcdef\",\"issuer\":\"https://auth.example.com\",\"obtained_at\":1700000000000,\"published_by\":\"tx\",\"tokens\":{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"},\"version\":2}",
+        "generation": "0123456789abcdef0123456789abcdef"
+      }
+    },
+    {
+      "name": "v2 without mirrors (old process invalidated)",
+      "input": {
+        "canonicalRaw": "{\"client_information\":{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]},\"expires_at\":1700003600000,\"generation\":\"0123456789abcdef0123456789abcdef\",\"issuer\":\"https://auth.example.com\",\"obtained_at\":1700000000000,\"published_by\":\"tx\",\"tokens\":{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"},\"version\":2}"
+      },
+      "expected": {
+        "client": null,
+        "tokens": null,
+        "raw": null,
+        "generation": null
+      }
+    },
+    {
+      "name": "v2, legacy tokens gone",
+      "input": {
+        "canonicalRaw": "{\"client_information\":{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]},\"expires_at\":1700003600000,\"generation\":\"0123456789abcdef0123456789abcdef\",\"issuer\":\"https://auth.example.com\",\"obtained_at\":1700000000000,\"published_by\":\"tx\",\"tokens\":{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"},\"version\":2}",
+        "legacyClientRaw": "{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]}"
+      },
+      "expected": {
+        "client": {
+          "client_id": "dyn-1",
+          "redirect_uris": [
+            "http://127.0.0.1:1/cb"
+          ]
+        },
+        "tokens": null,
+        "raw": null,
+        "generation": null
+      }
+    },
+    {
+      "name": "v2, same client, legacy refreshed",
+      "input": {
+        "canonicalRaw": "{\"client_information\":{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]},\"expires_at\":1700003600000,\"generation\":\"0123456789abcdef0123456789abcdef\",\"issuer\":\"https://auth.example.com\",\"obtained_at\":1700000000000,\"published_by\":\"tx\",\"tokens\":{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"},\"version\":2}",
+        "legacyClientRaw": "{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]}",
+        "legacyTokensRaw": "{\"access_token\":\"at-2\",\"token_type\":\"Bearer\",\"refresh_token\":\"rt-2\"}"
+      },
+      "expected": {
+        "client": {
+          "client_id": "dyn-1",
+          "redirect_uris": [
+            "http://127.0.0.1:1/cb"
+          ]
+        },
+        "tokens": {
+          "access_token": "at-2",
+          "token_type": "Bearer",
+          "refresh_token": "rt-2"
+        },
+        "raw": null,
+        "generation": null
+      }
+    },
+    {
+      "name": "v2, legacy client and tokens both changed",
+      "input": {
+        "canonicalRaw": "{\"client_information\":{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]},\"expires_at\":1700003600000,\"generation\":\"0123456789abcdef0123456789abcdef\",\"issuer\":\"https://auth.example.com\",\"obtained_at\":1700000000000,\"published_by\":\"tx\",\"tokens\":{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"},\"version\":2}",
+        "legacyClientRaw": "{\"client_id\":\"dyn-2\"}",
+        "legacyTokensRaw": "{\"access_token\":\"at-2\",\"token_type\":\"Bearer\",\"refresh_token\":\"rt-2\"}"
+      },
+      "expected": {
+        "client": {
+          "client_id": "dyn-2"
+        },
+        "tokens": null,
+        "raw": null,
+        "generation": null
+      }
+    },
+    {
+      "name": "v2, tokens same, legacy client gone",
+      "input": {
+        "canonicalRaw": "{\"client_information\":{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]},\"expires_at\":1700003600000,\"generation\":\"0123456789abcdef0123456789abcdef\",\"issuer\":\"https://auth.example.com\",\"obtained_at\":1700000000000,\"published_by\":\"tx\",\"tokens\":{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"},\"version\":2}",
+        "legacyTokensRaw": "{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"}"
+      },
+      "expected": {
+        "client": null,
+        "tokens": {
+          "access_token": "at-1",
+          "token_type": "Bearer",
+          "expires_in": 3600,
+          "refresh_token": "rt-1"
+        },
+        "raw": null,
+        "generation": null
+      }
+    },
+    {
+      "name": "v1 without mirrors",
+      "input": {
+        "canonicalRaw": "{\"client_information\":{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]},\"expires_at\":1700003600000,\"generation\":\"0123456789abcdef0123456789abcdef\",\"issuer\":\"https://auth.example.com\",\"obtained_at\":1700000000000,\"published_by\":\"tx\",\"tokens\":{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"},\"version\":1}"
+      },
+      "expected": {
+        "client": {
+          "client_id": "dyn-1",
+          "redirect_uris": [
+            "http://127.0.0.1:1/cb"
+          ]
+        },
+        "tokens": {
+          "access_token": "at-1",
+          "token_type": "Bearer",
+          "expires_in": 3600,
+          "refresh_token": "rt-1"
+        },
+        "raw": "{\"client_information\":{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]},\"expires_at\":1700003600000,\"generation\":\"0123456789abcdef0123456789abcdef\",\"issuer\":\"https://auth.example.com\",\"obtained_at\":1700000000000,\"published_by\":\"tx\",\"tokens\":{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"},\"version\":1}",
+        "generation": "0123456789abcdef0123456789abcdef"
+      }
+    },
+    {
+      "name": "v1, legacy refreshed by an old process",
+      "input": {
+        "canonicalRaw": "{\"client_information\":{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]},\"expires_at\":1700003600000,\"generation\":\"0123456789abcdef0123456789abcdef\",\"issuer\":\"https://auth.example.com\",\"obtained_at\":1700000000000,\"published_by\":\"tx\",\"tokens\":{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"},\"version\":1}",
+        "legacyClientRaw": "{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]}",
+        "legacyTokensRaw": "{\"access_token\":\"at-2\",\"token_type\":\"Bearer\",\"refresh_token\":\"rt-2\"}"
+      },
+      "expected": {
+        "client": {
+          "client_id": "dyn-1",
+          "redirect_uris": [
+            "http://127.0.0.1:1/cb"
+          ]
+        },
+        "tokens": {
+          "access_token": "at-2",
+          "token_type": "Bearer",
+          "refresh_token": "rt-2"
+        },
+        "raw": null,
+        "generation": null
+      }
+    },
+    {
+      "name": "v1, legacy from another client",
+      "input": {
+        "canonicalRaw": "{\"client_information\":{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]},\"expires_at\":1700003600000,\"generation\":\"0123456789abcdef0123456789abcdef\",\"issuer\":\"https://auth.example.com\",\"obtained_at\":1700000000000,\"published_by\":\"tx\",\"tokens\":{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"},\"version\":1}",
+        "legacyClientRaw": "{\"client_id\":\"dyn-2\"}",
+        "legacyTokensRaw": "{\"access_token\":\"at-2\",\"token_type\":\"Bearer\",\"refresh_token\":\"rt-2\"}"
+      },
+      "expected": {
+        "client": {
+          "client_id": "dyn-1",
+          "redirect_uris": [
+            "http://127.0.0.1:1/cb"
+          ]
+        },
+        "tokens": {
+          "access_token": "at-1",
+          "token_type": "Bearer",
+          "expires_in": 3600,
+          "refresh_token": "rt-1"
+        },
+        "raw": "{\"client_information\":{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]},\"expires_at\":1700003600000,\"generation\":\"0123456789abcdef0123456789abcdef\",\"issuer\":\"https://auth.example.com\",\"obtained_at\":1700000000000,\"published_by\":\"tx\",\"tokens\":{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"},\"version\":1}",
+        "generation": "0123456789abcdef0123456789abcdef"
+      }
+    },
+    {
+      "name": "v2 without generation",
+      "input": {
+        "canonicalRaw": "{\"client_information\":{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]},\"expires_at\":1700003600000,\"issuer\":\"https://auth.example.com\",\"obtained_at\":1700000000000,\"published_by\":\"tx\",\"tokens\":{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"},\"version\":2}",
+        "legacyClientRaw": "{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]}",
+        "legacyTokensRaw": "{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"}"
+      },
+      "expected": {
+        "client": {
+          "client_id": "dyn-1",
+          "redirect_uris": [
+            "http://127.0.0.1:1/cb"
+          ]
+        },
+        "tokens": {
+          "access_token": "at-1",
+          "token_type": "Bearer",
+          "expires_in": 3600,
+          "refresh_token": "rt-1"
+        },
+        "raw": "{\"client_information\":{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]},\"expires_at\":1700003600000,\"issuer\":\"https://auth.example.com\",\"obtained_at\":1700000000000,\"published_by\":\"tx\",\"tokens\":{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"},\"version\":2}",
+        "generation": "legacy-72e88fe281f842f0457f7abea79645ea"
+      }
+    },
+    {
+      "name": "unknown version",
+      "input": {
+        "canonicalRaw": "{\"client_information\":{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]},\"expires_at\":1700003600000,\"generation\":\"0123456789abcdef0123456789abcdef\",\"issuer\":\"https://auth.example.com\",\"obtained_at\":1700000000000,\"published_by\":\"tx\",\"tokens\":{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"},\"version\":3}",
+        "legacyClientRaw": "{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]}",
+        "legacyTokensRaw": "{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"}"
+      },
+      "expected": {
+        "client": {
+          "client_id": "dyn-1",
+          "redirect_uris": [
+            "http://127.0.0.1:1/cb"
+          ]
+        },
+        "tokens": {
+          "access_token": "at-1",
+          "token_type": "Bearer",
+          "expires_in": 3600,
+          "refresh_token": "rt-1"
+        },
+        "raw": null,
+        "generation": null
+      }
+    },
+    {
+      "name": "broken canonical",
+      "input": {
+        "canonicalRaw": "{not json",
+        "legacyClientRaw": "{\"client_id\":\"dyn-1\",\"redirect_uris\":[\"http://127.0.0.1:1/cb\"]}",
+        "legacyTokensRaw": "{\"access_token\":\"at-1\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"rt-1\"}"
+      },
+      "expected": {
+        "client": {
+          "client_id": "dyn-1",
+          "redirect_uris": [
+            "http://127.0.0.1:1/cb"
+          ]
+        },
+        "tokens": {
+          "access_token": "at-1",
+          "token_type": "Bearer",
+          "expires_in": 3600,
+          "refresh_token": "rt-1"
+        },
+        "raw": null,
+        "generation": null
+      }
+    }
+  ]
+}

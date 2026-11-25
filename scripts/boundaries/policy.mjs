@@ -1,0 +1,910 @@
+// packages/rust-cli 的边界规则表（docs/specs/rust-cli/README.md §3.1、§3.2、§4）。
+//
+// 这里是唯一来源：README 的依赖表、IO 类别表、第三方归属表与 tokio 特性表由 check.mjs 逐行比对。
+// 新增 crate、依赖、IO 入口或第三方库时先改这里与 README，并写一行理由。
+
+import { PUFFIN_LITERAL_EXCEPTIONS, PUFFIN_NUMBER_RAISES } from "./policy-puffin.mjs";
+import { TOOL_NAME_EXCEPTIONS, TOOL_NAME_LITERAL } from "./policy-vocabulary.mjs";
+
+/// crate 所在的层（README §3.1 规则 1）。
+export const LAYERS = {
+  base: "foundation",
+  paths: "foundation",
+  fs: "foundation",
+  net: "foundation",
+  proc: "foundation",
+  // 系统凭据库（macOS 钥匙串、Windows 凭据管理器、Linux Secret Service）的唯一入口（docs/specs/rust-cli/platform.md §13.8）。
+  keyring: "foundation",
+  prompts: "foundation",
+  // 远端执行的协议与传输（docs/specs/rust-cli/remote-exec.md §15.4）：不认识 kernel-api。
+  "exec-wire": "foundation",
+  "exec-transport": "foundation",
+  "exec-client": "foundation",
+  "kernel-api": "kernel",
+  policy: "kernel",
+  // 自动模式的分类器（docs/specs/rust-cli/auto-classifier.md §15）：实现 kernel-api 的 AutoClassifier，只经 ModelPort 发请求。
+  classifier: "kernel",
+  hooks: "kernel",
+  context: "kernel",
+  tools: "kernel",
+  compact: "kernel",
+  memory: "kernel",
+  agents: "kernel",
+  ext: "kernel",
+  query: "kernel",
+  session: "kernel",
+  runtime: "kernel",
+  "node-store": "adapter",
+  "pg-store": "adapter",
+  // Node 记录格式与编排（F128，审查 X5；pg-store.md §12）：node-store 与 pg-store 的仓储与事务之外的那一半，两个存储适配器共用。
+  "node-records": "adapter",
+  model: "adapter",
+  "env-local": "adapter",
+  // 远端机器的执行端口（客户端）与执行器侧：wire ⇄ kernel-api 的换算只在这两个 crate（remote-exec.md §15.4）。
+  "env-remote": "adapter",
+  "exec-server": "adapter",
+  // SSH 的连接与部署（remote-exec.md §15.4、§19.9）：只认 exec-transport 的 Connector 与 machines 的 Provisioner（F128）。
+  "ssh-connect": "adapter",
+  // 执行中转的拨号规矩（remote-exec.md §29.3、§29.6，F142）：只实现 exec-transport 的 Connector，与 ssh-connect 对称。
+  "relay-connect": "adapter",
+  // 远端机器（remote-exec.md §15.4、§19.10、§20.3）：机器清单 machines.json（R3）与一台机器的连接状态机（R2），只认
+  // Connector、自己的 Provisioner（F128 从 exec-transport 移来）与 exec-client。
+  machines: "adapter",
+  peers: "adapter",
+  // 插件存储（docs/specs/rust-cli/plugin-store.md）：市场、安装与插件设置的写侧与读侧的清单，与 Node CLI 共用文件与锁；只被 cli 依赖。
+  "plugin-store": "adapter",
+  // 发行版的模型请求处理（docs/specs/rust-cli/model.md §5.4）：官方版本的请求安全校验实现 model 的 RequestGuard，只被 cli 依赖；
+  // 导出到 ZCode-rs 时 src 换成占位（export.md §12）。
+  "request-security-edition": "adapter",
+  platform: "platform",
+  // 终端界面（docs/specs/rust-cli/tui.md）：唯一的交互界面（2026-10-31 起；Puffin 的 Rust 移植删掉，设计见 docs/puffin-tui.md）。
+  tui: "frontend",
+  // 终端界面与 cli 共用的端口类型：只有 trait 与类型。
+  "tui-ports": "ports",
+  // 终端界面的渲染层（docs/specs/rust-cli/tui-kit.md）：格子、样式、渲染器、Element 与布局、按键解析、主题、
+  // Markdown；只依赖 base，没有 unsafe。
+  "tui-kit": "kit",
+  headless: "frontend",
+  // 协议适配层（docs/specs/rust-cli/app-protocol.md §3.2）：协议框架只被前端与入口依赖；每种协议一个前端 crate。
+  "protocol-core": "frontend-shared",
+  "protocol-zcode": "frontend",
+  // ZCode Protocol v5 的前端（docs/specs/rust-cli/protocol-v5.md，F141）：与 protocol-zcode 同层、互不依赖。
+  "protocol-v5": "frontend",
+  cli: "entry",
+  // `zcode executor` 的组装（remote-exec.md §15.4）。
+  "executor-host": "entry",
+};
+
+/// 每层能依赖的层与 crate。改依赖表也不能越过它。`testOnly`：只许做测试依赖的 crate（产品代码不能依赖）。
+export const LAYER_RULES = {
+  foundation: { layers: ["foundation"], crates: [] },
+  kernel: { layers: ["kernel"], crates: ["base", "prompts"] },
+  // machines：部署器的 trait、进度与错误在它那里（F128，用户决定 Q7），SSH 的部署器（ssh-connect）实现它。node-records：Node
+  // 记录格式与编排（F128，审查 X5），存储适配器共用。ALLOWED 是精确表，只有 ssh-connect、node-store、pg-store 用到这两条。
+  // model：request-security-edition 实现 model 定义的 RequestGuard（同 ssh-connect 实现 machines 的部署器）。
+  adapter: { layers: ["foundation"], crates: ["kernel-api", "machines", "model", "node-records"] },
+  platform: { layers: ["foundation"], crates: ["kernel-api"] },
+  // frontend-shared：协议适配层的共用框架（docs/specs/rust-cli/app-protocol.md §3）。只依赖 base 与 kernel-api，只被前端与入口
+  // 依赖；不认识任何一种协议。
+  "frontend-shared": { layers: [], crates: ["base", "kernel-api"] },
+  // ports：终端界面与 cli 共用的端口类型。只依赖 base 与 kernel-api，只被前端与入口依赖；没有 IO、没有画面。
+  ports: { layers: [], crates: ["base", "kernel-api"] },
+  // kit：终端界面的渲染层（tui-kit.md）。只依赖 base，只被前端依赖；不认识内核与会话。
+  kit: { layers: [], crates: ["base"] },
+  // 前端的产品代码只认 kernel-api 的会话 API：内核由入口组装好交进来，runtime 只在测试里组装 `LocalKernel`（F133，审查
+  // U14）；登录、凭据、Provider 与本机配置文件由入口经 platform 实现、注入成服务，前端不依赖 platform（F133，审查 E7）。
+  frontend: {
+    layers: ["frontend-shared", "ports", "kit"],
+    crates: ["base", "prompts", "kernel-api"],
+    testOnly: ["runtime"],
+  },
+  entry: "*",
+};
+
+/// 依赖表（README §3.2）：表 = 实际依赖（普通、构建与测试依赖都算），死项与没登记的依赖都报错。
+export const ALLOWED = {
+  base: [],
+  paths: ["base"],
+  fs: ["base"],
+  // base：文件权限位、`/proc/<pid>/stat` 的字段与单位（F122，constants.md §2）。
+  proc: ["base"],
+  net: ["base"],
+  // base：阻塞的系统调用经 `blocking`（macOS、Windows，platform.md §13.3）。
+  keyring: ["base"],
+  // base：`include_lf!`（F56）与产品目录名 `.zcode`（loop.md 的位置，README §4.1，F55）。
+  prompts: ["base"],
+  "kernel-api": ["base"],
+  // base：握手里不透明的凭据用 RedactedString（remote-exec.md §18.4）。
+  "exec-wire": ["base"],
+  // base：stderr 转发任务经 owned 启动；proc：stdio 传输的子进程（remote-exec.md §18.6）。
+  // net：WebSocket 传输（F142，remote-exec.md §29.3）。
+  "exec-transport": ["base", "net", "proc"],
+  // 会话层：任务经 base 的 TaskScope；凭据是 base 的 RedactedString（remote-exec.md §18.5）。
+  "exec-client": ["base", "exec-transport", "exec-wire"],
+  // node-records：记录的形状、冷读取与编排（F128）；这里是 SQLite、事务与文件。
+  "node-store": ["base", "fs", "kernel-api", "node-records", "paths"],
+  // 会话 PG 驱动与池只在适配器中，不引入内核依赖闭包（pg-store.md §12）。
+  "pg-store": ["base", "kernel-api", "node-records"],
+  // 只有数据与经 Rows 的编排：JS 语义的 JSON 与字符串、MIME（base），内核的消息与事实（kernel-api）。
+  "node-records": ["base", "kernel-api"],
+  model: ["base", "kernel-api", "net"],
+  // 准备请求经 net 的出口；端点与错误类型取 kernel-api，端口取 model；文本工具、锁与哈希取 base（model.md §5.4）。
+  "request-security-edition": ["base", "kernel-api", "model", "net"],
+  "env-local": ["base", "fs", "kernel-api", "net", "proc"],
+  peers: ["base", "fs", "kernel-api", "net"],
+  // 插件存储（plugin-store.md §2）：存储根下的文件与锁经 fs，位置由 paths 给；市场清单与 zip 的下载经 net 的出口；系统 git 经
+  // proc；工作区键的路径规范化（`PathStyle`）取 kernel-api。不依赖 platform：写 config.json 由 cli 在持存储锁时调 platform。
+  "plugin-store": ["base", "fs", "kernel-api", "net", "paths", "proc"],
+  // MachineEnv 的 8 个端口经 exec-client 发请求（remote-exec.md §18）。§15.4 的表多写了 base：没有用到，不列。
+  // F96（§23.6）：远端调用失败时给模型的说明在 prompts（模型看的文字）。
+  "env-remote": ["exec-client", "exec-wire", "kernel-api", "prompts"],
+  // 派发到注入的 MachineEnv；任务经 base 的 TaskScope，执行器实例名经 base 的 random（remote-exec.md §18）。
+  "exec-server": ["base", "exec-transport", "exec-wire", "kernel-api"],
+  // SSH 的 Connector 与 Provisioner（remote-exec.md §19.9）：ssh 进程经 proc；本机产物（ELF 头、sha256、上传的内容）经 fs；
+  // 远端目录与可执行文件的名字、任务取 base。不认识 exec-wire：要的版本与协议由组装根给。machines：部署器的 trait、进度与
+  // 错误（F128，审查 X3：部署是“怎么就位”，不在只搬帧的 exec-transport）。
+  "ssh-connect": ["base", "exec-transport", "fs", "machines", "proc"],
+  // 拨号经 exec-transport 的 ws；拉起沙盒的 `/up` 是一次 HTTP 请求（net）。
+  "relay-connect": ["base", "exec-transport", "net"],
+  // 状态机与驱动（remote-exec.md §19.10）：任务经 base 的 TaskScope；exec-wire 只在测试里（假执行器的帧）。机器清单
+  // machines.json（R3，§20.3.1）：文件经 fs，位置由 paths 给。
+  machines: ["base", "exec-client", "exec-transport", "exec-wire", "fs", "paths"],
+  // base：`include_lf!`（F56）与产品目录与文件的名字（README §4.1，F55）。
+  policy: ["base", "kernel-api"],
+  // base：锁的取用、JS 的 JSON 文本与模型名；prompts：安全监视器的提示（auto-classifier.md §15.4）。
+  classifier: ["base", "kernel-api", "prompts"],
+  hooks: ["base", "kernel-api", "prompts"],
+  context: ["base", "kernel-api", "memory", "prompts"],
+  memory: ["kernel-api"],
+  tools: ["base", "kernel-api", "policy", "prompts"],
+  // base：测试的模型常量（dev-dependency，工作线 F121）。
+  compact: ["base", "kernel-api", "prompts"],
+  agents: ["base", "kernel-api", "prompts"],
+  // F125：Skill 的 `!` 命令经 kernel-api 的 `ScopedGate`、规则语法经 `permission::syntax`，不再依赖 policy。
+  ext: ["base", "kernel-api", "prompts"],
+  query: ["base", "kernel-api", "prompts"],
+  // query：只在测试里（会话 actor 的测试跑真实的主循环）。F131 起产品代码不依赖 query：后台通知的文字在 prompts。
+  session: ["base", "kernel-api", "prompts", "query"],
+  runtime: [
+    "agents",
+    "base",
+    "classifier",
+    "compact",
+    "context",
+    "ext",
+    "hooks",
+    "kernel-api",
+    "policy",
+    "prompts",
+    "query",
+    "session",
+    "tools",
+  ],
+  platform: ["base", "fs", "kernel-api", "net", "paths"],
+  "tui-ports": ["base", "kernel-api"],
+  "tui-kit": ["base"],
+  // runtime：只在测试里组装内核（LAYER_RULES 的 testOnly）。
+  tui: ["base", "kernel-api", "prompts", "runtime", "tui-ports", "tui-kit"],
+  headless: ["base", "kernel-api", "runtime"],
+  // 协议框架：连接、会话桥、投递与 schema 校验只用内核会话 API；任务经 base 的 TaskScope（app-protocol.md §3.3）。
+  "protocol-core": ["base", "kernel-api"],
+  // App 协议：账号凭据的注入来源（G8，`HeaderSource`）在 kernel-api（F129，审查 E7：以前为它依赖整个 platform）；P1 没有
+  // App 形态的提示段，不依赖 prompts（§13 第 4 项）。
+  "protocol-zcode": ["base", "kernel-api", "protocol-core"],
+  // v5：连接与分帧经协议框架；epoch 的随机部分与任务经 base。kernel-api（重做线 FEED，protocol-v5.md §1、§14）：会话列表的
+  // 事实、种子与变化流（StoreQueries、SessionFacts、WorkspaceRef）是内核的前端无关类型，v5 只把它们投影成帧与查询结果；
+  // 测试依赖开它的 testing 特性（MemoryStore）。不依赖 runtime：内核由入口组装，存储查询由入口交进来。
+  "protocol-v5": ["base", "kernel-api", "protocol-core"],
+  cli: "*",
+  // 入口：组装 exec-server 与注入的 env-local；测试依赖里有合同测试用到的 env-local、env-remote、exec-client。
+  "executor-host": "*",
+};
+
+/// 波及范围（docs/specs/rust-cli/remote-exec.md §15.6 第 2 条）：远端 crate 的反向依赖闭包（谁直接或间接依赖它，测试依赖也算），
+/// 实际必须与这里相等。“把 SSH 换成云只改两处”由此可查：新传输只被组装根依赖。
+export const BLAST_RADIUS = {
+  // machines：只在测试里（假执行器的帧）。ssh-connect：经 machines → exec-client（F128）。
+  "exec-wire": [
+    "cli",
+    "env-remote",
+    "exec-client",
+    "exec-server",
+    "executor-host",
+    "machines",
+    "ssh-connect",
+  ],
+  "exec-transport": [
+    "cli",
+    "relay-connect",
+    "env-remote",
+    "exec-client",
+    "exec-server",
+    "executor-host",
+    "machines",
+    "ssh-connect",
+  ],
+  // ssh-connect：经 machines（F128）。
+  "exec-client": ["cli", "env-remote", "executor-host", "machines", "ssh-connect"],
+  "env-remote": ["cli", "executor-host"],
+  "exec-server": ["cli", "executor-host"],
+  "executor-host": ["cli"],
+  // cli：`executor status --json` 的输出与部署探测的解析互相核对（测试依赖）。
+  "ssh-connect": ["cli"],
+  // ssh-connect：部署器的 trait 与错误（F128）。
+  machines: ["cli", "ssh-connect"],
+  "relay-connect": ["cli"],
+};
+
+/// 上面任何一个闭包里都不能有这些层的 crate：内核、前端与平台层不认识远端（远端对它们只是另一台机器的 MachineEnv）。
+export const BLAST_FORBIDDEN_LAYERS = ["kernel", "frontend", "platform"];
+
+/// 稳定依赖原则的例外（remote-exec.md §15.6 第 4 条）：键 `A->B`，值是理由。
+export const SDP_EXCEPTIONS = {
+  "headless->runtime":
+    "runtime 只在 headless 的测试里用来组装内核（测试依赖）；headless 的产品代码只认 kernel-api 的会话 API",
+};
+
+/// cli 里可以碰本机文件（`rust_cli_fs::`、`std::fs::`、`tokio::fs::`、`LocalEnvironment::new`）的产品文件与理由
+/// （docs/specs/rust-cli/deployment.md §21、§25）。路径一律指执行侧：会话的输入经主 env 读，controller 不为会话碰文件；
+/// 新文件要碰本机文件就登记在这里并写明理由，不再用到的条目会报错。
+export const CLI_LOCAL_FILES = {
+  "crates/cli/src/assemble/deployment.rs": "启动参数：部署配置文件在组装之前读",
+  "crates/cli/src/assemble/mod.rs":
+    "建本机的 env-local：controller 的主 env（本进程里时）与 Fetch，执行器的执行侧（同一个 `local_env`，F129）",
+  "crates/cli/src/assemble/shell.rs": "建进程内的 env-local：本机 shell 的事实",
+  "crates/cli/src/assemble/setup.rs":
+    "`zcode hooks trust`、`zcode plugin`：只对本机项目的本地子命令",
+  "crates/cli/src/plugin_admin/listing.rs":
+    "本机才有的功能：插件管理（plugin-store.md §13.2）读本机插件根里的 manifest、数一数 skill",
+  "crates/cli/src/plugin_admin/writes.rs":
+    "本机才有的功能：插件管理（plugin-store.md §8、§10）读本机内置插件的 manifest、写配置值前读这一层的配置文件",
+  "crates/cli/src/plugin_admin/facts.rs":
+    "本机才有的功能：插件管理页的读（plugin-store.md §12.1）读本机插件根里的 manifest、组件目录与这一层的配置文件",
+  "crates/cli/src/assemble/keys.rs":
+    "只给测试：debug 构建的假系统凭据库文件（`_ZCODE_ASSUME_KEYRING_FILE`，platform.md §13.8）",
+  "crates/cli/src/frontends/clipboard.rs": "前端：用户那台机器上拖入、粘贴的图片读成字节",
+  "crates/cli/src/frontends/serve/turn.rs":
+    "前端：`serve` 的每个用户在本进程数据目录下的 home（执行侧就是本进程，multi-tenant.md §4）",
+  "crates/cli/src/frontends/editor.rs":
+    "前端：外部编辑器的临时文件；`/memory` 改经主 env 在 M2（deployment.md §19）",
+  "crates/cli/src/process/log_writer.rs": "日志汇（deployment.md §10 F）",
+  "crates/cli/src/assemble/model_io_files.rs": "日志汇：模型轨迹（deployment.md §10 F）",
+  "crates/cli/src/assemble/network.rs": "出网配置：CA 文件",
+  "crates/cli/src/assemble/request_headers.rs": "进程事实：本机时区",
+  "crates/cli/src/commands/embedded.rs": "进程事实：本进程可执行文件的位置",
+  "crates/cli/src/commands/build_number.rs": "编译期工具：版本号计数文件（build.rs 与单测引入）",
+  "crates/cli/src/commands/update/cache.rs": "本机才有的功能：自动更新的缓存",
+  "crates/cli/src/commands/update/handoff.rs": "本机才有的功能：自动更新的交接文件",
+  "crates/cli/src/machines/executor_dist/mod.rs": "本机才有的功能：SSH 部署的执行器产物缓存",
+  "crates/cli/src/assemble/models_memory.rs":
+    "本机的界面状态：上次定下的缺省模型（`~/.zcode/rust-cli/default-model.json`，performance.md §12.4）",
+  "crates/cli/src/commands/desktop_app/system.rs":
+    "本机才有的功能：找到并启动本机的桌面端（cli-args.md §16）",
+  "crates/cli/src/frontends/tui.rs":
+    "前端：设置页里记忆文件的大小（只是显示）；同 editor.rs，`/memory` 改经主 env 在 M2（deployment.md §19）",
+  "crates/cli/src/frontends/tui_cockpit.rs":
+    "本机的界面状态：驾驶舱的笔记与登记处（tui-cockpit.md §1）",
+  "crates/cli/src/frontends/tui_inputs.rs": "本机的界面状态：主题、模型、模式与驾驶舱的设置文件",
+  "crates/cli/src/frontends/tui_machines.rs":
+    "本机才有的功能：`/machines` 读用户自己的 ~/.ssh/config 列出主机",
+  "crates/cli/src/frontends/tui_peek.rs":
+    "前端：`@` 面板的文件预览，只读本机工作区（远端的工作区回答 `Missing`，还没有经主 env 读的接缝）",
+};
+
+/// IO 类别（README §4）：clippy.toml 的每条禁令按路径前缀归入一类；`entries` 是可以豁免这一类的 crate。
+export const IO_CATEGORIES = [
+  {
+    name: "file",
+    label: "文件",
+    prefixes: [
+      "std::fs::",
+      "tokio::fs::",
+      "std::path::Path::",
+      "std::os::unix::fs::",
+      "std::os::windows::fs::",
+    ],
+    entries: ["fs", "env-local", "proc", "cli"],
+  },
+  {
+    name: "process",
+    label: "进程",
+    prefixes: ["std::process::", "tokio::process::"],
+    entries: ["proc"],
+  },
+  { name: "env", label: "环境", prefixes: ["std::env::"], entries: ["cli"] },
+  {
+    name: "net",
+    label: "网络",
+    prefixes: ["reqwest::", "std::net::", "tokio::net::", "std::os::unix::net::"],
+    entries: ["net"],
+  },
+  // F128（审查 X9）：本机的系统时钟从 node-store 移到 base。
+  { name: "clock", label: "时间", prefixes: ["std::time::"], entries: ["base", "fs"] },
+  { name: "ids", label: "ID", prefixes: ["uuid::"], entries: ["node-store"] },
+  // 随机（F58）：`RandomState` 的种子经 base 的 `random`；加密强度的随机（ring）在 platform 与 request-security-edition。
+  {
+    name: "random",
+    label: "随机",
+    prefixes: ["std::hash::RandomState::", "ring::rand::"],
+    entries: ["base", "platform", "request-security-edition"],
+  },
+];
+
+/// crate 级放开的类别：这些 crate 有自己的 clippy.toml，内容等于根配置去掉这些类别的禁令。
+export const CRATE_LEVEL_OPEN = { fs: ["file"] };
+
+/// `allow-invalid = true` 只给按平台或按 tokio 特性才存在的路径。
+export const ALLOW_INVALID_PREFIXES = [
+  "std::os::unix::",
+  "std::os::windows::",
+  "tokio::fs::",
+  "tokio::net::",
+  "tokio::process::",
+];
+
+/// IO 类第三方库的归属（普通与构建依赖；表 = 实际）。
+export const THIRD_PARTY_OWNERS = {
+  reqwest: ["net"],
+  rustls: ["net"],
+  // 内置的 Mozilla 根证书（docs/specs/rust-cli/config.md §2.4，F44）：信任锚只在出口构造客户端时用。
+  "webpki-root-certs": ["net"],
+  // WebSocket 的帧（README §3.2.1）：握手经出口的 HTTP 客户端，升级后的连接交给它读写。
+  "tokio-tungstenite": ["net"],
+  rusqlite: ["node-store"],
+  sqlx: ["pg-store"],
+  "sea-orm": ["pg-store"],
+  "sea-orm-sync": ["node-store"],
+  "sea-query-rusqlite": ["node-store"],
+  uuid: ["node-store"],
+  ignore: ["env-local"],
+  "grep-matcher": ["env-local"],
+  "grep-regex": ["env-local"],
+  "grep-searcher": ["env-local"],
+  notify: ["env-local"],
+  // cli：系统时区（docs/specs/rust-cli/time-zone.md §1，F8）——Unix 的 localtime_r、Windows 的时区 API。
+  libc: ["paths", "fs", "proc", "cli"],
+  // tui：Windows 控制台——stdin 是不是控制台（mintty 的判断）与背景色探测读控制台输入（工作线 F71），同 Unix 的 rustix。
+  "windows-sys": ["fs", "proc", "cli", "tui"],
+  // 系统凭据库（platform.md §13.3，README §3.2.1）：与 Node 的 `@napi-rs/keyring` 同源的 keyring-core 与三个平台的 store
+  // （macOS 钥匙串的通用密码、Windows 凭据管理器的通用凭据、Linux 的 Secret Service，经 zbus）。
+  "keyring-core": ["keyring"],
+  "apple-native-keyring-store": ["keyring"],
+  "windows-native-keyring-store": ["keyring"],
+  "zbus-secret-service-keyring-store": ["keyring"],
+  // request-security-edition：官方版本的请求安全校验的密码学原语与随机串（model.md §5.4）。
+  ring: ["platform", "request-security-edition"],
+  // 终端界面：原始模式、备用屏、尺寸、按键与鼠标。
+  crossterm: ["tui", "tui-kit"],
+  // 终端界面：OSC 10/11 探测的带超时读（kit 的探测在 tui-kit）。
+  rustix: ["tui", "tui-kit"],
+  // 全局分配器（带 C 代码）只由组装根设置，且只在 *-linux-musl（docs/specs/rust-cli/linux.md §8.3，F44）。
+  mimalloc: ["cli"],
+  // 内嵌的搜索工具（第三方源码，非 workspace 成员，docs/specs/rust-cli/embedded-search.md，F53）：整个进程变成
+  // 那个工具（读参数与环境、读写文件、起子进程），只有入口按 argv0 分派时调用。
+  "rust-cli-vendor-rg": ["cli"],
+  "rust-cli-vendor-bfs": ["cli"],
+  "rust-cli-vendor-ugrep": ["cli"],
+  // 执行器的 npm 平台包（docs/specs/rust-cli/remote-exec.md §26.4，README §3.2.1）：cli 只用读法（读进内存）；库的 unpack 会写文件，
+  // 所以登记成 IO 类，别的 crate 不能拿它绕过 fs 解包。
+  tar: ["cli"],
+  // 插件的 zip 来源与 GitHub Archive（plugin-store.md §9.4，README §3.2.1）：只用读法（逐项读进内存），写文件经 fs；库的解包会写
+  // 文件，所以登记成 IO 类，别的 crate 不能拿它绕过 fs 解包（cli 只在测试里用它现生成 zip）。
+  zip: ["plugin-store"],
+};
+
+/// 自己起 tokio 任务的第三方库（README §3.1 第 4 条的例外，表 = 实际；普通依赖）：只有列出的 crate 能依赖它。
+/// 它们的任务不经 base 的 TaskScope（作用域关闭时不中止、panic 不上报），寿命要由依赖它的 crate 自己管住；
+/// 本工程自己的代码照旧只经 TaskScope 起任务。
+/// rmcp：MCP 官方 Rust SDK 的会话层（docs/specs/rust-cli/ext.md §3.11），服务循环与每条消息的处理直接 `tokio::spawn`；
+/// 连接的寿命由 `RunningService` 的 DropGuard 管，ext 持有它。
+export const OWN_TASK_LIBRARIES = {
+  rmcp: ["ext"],
+};
+
+/// 只能出现在测试依赖里的库。
+/// rcgen：真实进程与 net 的单测现生成 CA 与服务器证书（docs/specs/rust-cli/config.md §5，F21）。
+/// security-framework：keyring 的手动核对程序（examples/keyring_probe.rs）在 macOS 上关掉钥匙串的用户交互（platform.md §13.10）。
+export const TEST_ONLY = ["tempfile", "rcgen", "security-framework"];
+
+/// 纯计算的库：谁都能用；列出的每个都要有人用（死项报错）。
+export const PURE = [
+  "anyhow",
+  "arc-swap",
+  "async-trait",
+  "base64",
+  "bytes",
+  // cli：解开执行器的 npm 平台包（gzip，remote-exec.md §26.4，F100）。
+  "flate2",
+  "futures-util",
+  "httpdate",
+  // net `ws_server`：WS 升级请求的请求行与请求头（README §3.2.1，LIB-A）。
+  "httparse",
+  // kernel-api `env_path::nfc`：Unicode NFC（工具路径参数，tools-files.md §3.2，F14）。
+  "icu_normalizer",
+  // tools `attachment_image`：用户附上的图片照 Node 缩放与转码（session-lifecycle.md §10.41，ATTACH-2）。
+  "image",
+  // platform `mcp_oauth`：OAuth 2.0 的 PKCE、授权地址、换令牌与刷新（关掉缺省特性，没有 HTTP 客户端；请求经 net 的出口，
+  // docs/specs/rust-cli/ext.md §3.12.12，README §3.2.1，MCP-OAUTH）。
+  "oauth2",
+  // base `js::uri`（encodeURIComponent / decodeURIComponent）与 kernel-api、ext 自己的字符集（README §3.2.1，LIB-A）。
+  "percent-encoding",
+  "regex",
+  "regress",
+  // tui-kit：回答里的 mermaid 代码块画成文字图、TeX 公式排成 Unicode（第三方源码，非 workspace 成员，
+  // docs/specs/rust-cli/tui-kit.md §3.5、README §3.2.1）。只做字符串计算，没有 IO。
+  "rust-cli-vendor-mermaid",
+  "rust-cli-vendor-texmath",
+  // base `frontmatter`：Markdown frontmatter 的 YAML（README §3.2.1）；重复的键取后一个要用 saphyr 的 loader 选项，解析器在 saphyr-parser。
+  "saphyr",
+  "saphyr-parser",
+  "serde",
+  "serde_json",
+  "sha2",
+  "thiserror",
+  "tokio",
+  "tokio-util",
+  "tracing",
+  // tui：搜索按字素匹配（docs/specs/rust-cli/tui-input.md §2.3.3，F114）。
+  "unicode-segmentation",
+  "unicode-width",
+  "url",
+];
+
+/// tokio 做 IO 的特性由哪些 crate 声明（普通与构建依赖；表 = 实际；测试依赖不限）。
+export const TOKIO_IO_FEATURES = {
+  fs: ["fs", "env-local", "proc"],
+  process: ["proc"],
+  // 跨会话的收件箱：Unix 域套接字只在 net（docs/specs/rust-cli/cross-session.md §2.1，F28）。
+  net: ["net"],
+  "io-std": ["cli"],
+  // 入口把 SIGINT / SIGTERM / SIGHUP 变成前端的取消令牌（session-lifecycle.md §3.5，F5）。
+  signal: ["cli"],
+  full: [],
+};
+
+/// 单个 .rs 文件的行数上限（README §3.1；2026-10-18 用户从 400 调到 800，2026-11-06 用户说“行数不需要那么严格”，调到 1000）。
+export const MAX_LINES = 1000;
+
+/// 同一个名字只定义一处（README §4.1，F55）：产品代码（不含测试文件）的字符串字面量里出现 `pattern` 时，文件必须是
+/// `owners` 之一；每个 owner 自己要有这个字面量（死项报错）。注释不算；`packages/rust-cli/prompts/` 下的提示词原文是
+/// 数据文件，不查。
+export const SINGLE_DEFINITIONS = [
+  {
+    name: "the product directory name .zcode",
+    // `.zcode` 作为路径段：前面不是名字字符，后面不是名字字符、`-` 或 `.`（`.zcode-plugin`、`.zcode.json` 是别的名字）。
+    pattern: /(?<![A-Za-z0-9_])\.zcode(?![A-Za-z0-9_.-])/,
+    owners: ["crates/base/src/names.rs"],
+    hint: "rust_cli_base::names::DOT_DIR (or rust_cli_base::dot_dir!() in a const)",
+  },
+  // F58：文件名只抓路径用途——字面量里作为整段出现（前面是开头或 `/` `\`，后面是结尾或 `/` `\`）。给用户或模型看的
+  // 文字（前后有空格、标点）不算。
+  {
+    name: "the rules file name AGENTS.md",
+    pattern: pathSegment("AGENTS.md"),
+    owners: ["crates/base/src/names.rs"],
+    hint: "rust_cli_base::names::RULES_FILE",
+  },
+  {
+    name: "the local rules file name AGENTS.local.md",
+    pattern: pathSegment("AGENTS.local.md"),
+    owners: ["crates/base/src/names.rs"],
+    hint: "rust_cli_base::names::LOCAL_RULES_FILE",
+  },
+  {
+    name: "the project config file name zcode.json",
+    pattern: pathSegment("zcode.json"),
+    owners: ["crates/base/src/names.rs"],
+    hint: "rust_cli_base::names::PROJECT_CONFIG_FILE",
+  },
+  {
+    name: "the scheduled tasks file name scheduled_tasks.json",
+    pattern: pathSegment("scheduled_tasks.json"),
+    owners: ["crates/base/src/names.rs"],
+    hint: "rust_cli_base::names::SCHEDULED_TASKS_FILE",
+  },
+  {
+    name: "the memory index file name MEMORY.md",
+    pattern: pathSegment("MEMORY.md"),
+    owners: ["crates/memory/src/entrypoint.rs"],
+    hint: "rust_cli_memory::entrypoint::ENTRYPOINT",
+  },
+  // F122（用户决定第 9 项）：通用的请求头名只在 base 的 `proto::http::header`。`accept` 不登记：hooks 的 elicitation 结果
+  // 里有同名的取值（另一个意思）。
+  ...["content-type", "retry-after", "user-agent"].map((header) => ({
+    name: `the HTTP header name ${header}`,
+    pattern: new RegExp(`^${header}$`, "i"),
+    owners: ["crates/base/src/proto/http.rs"],
+    hint: "rust_cli_base::proto::http::header (net::header re-exports it)",
+  })),
+  // F122 第二阶段（用户决定第 9 项，docs/specs/rust-cli/constants.md §5.2）：路径用途的 `.git`（整段，前后是开头、结尾或
+  // 路径分隔符；`--exclude-dir=.git` 这类参数文字不算）、空设备、MIME、`x-api-key`。
+  {
+    name: "the git directory name .git",
+    pattern: /(?:^|[/\\])\.git(?:$|[/\\])/,
+    owners: ["crates/kernel-api/src/env_files.rs"],
+    hint: "rust_cli_kernel_api::env_files::GIT_DIR (GIT_HOOKS_DIR, GIT_CONFIG_FILE)",
+  },
+  {
+    name: "the null device /dev/null",
+    pattern: /^\/dev\/null$/,
+    owners: ["crates/base/src/path.rs"],
+    hint: "rust_cli_base::path::DEV_NULL",
+  },
+  ...[
+    "application/json",
+    "application/pdf",
+    "image/gif",
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "text/event-stream",
+    "text/html",
+    "text/markdown",
+    "text/plain",
+  ].map((type) => ({
+    name: `the MIME type ${type}`,
+    pattern: new RegExp(`^${type}$`, "i"),
+    owners: ["crates/base/src/proto/mime.rs"],
+    hint: "rust_cli_base::proto::mime (net::header re-exports JSON and EVENT_STREAM)",
+  })),
+  {
+    name: "the HTTP header name x-api-key",
+    pattern: /^x-api-key$/i,
+    owners: ["crates/net/src/header.rs"],
+    hint: "rust_cli_net::header::X_API_KEY",
+  },
+  // F128（审查 X8）：字节写成两位小写 hex 只在 base（以前 9 个 crate 里手写 11 处循环）。
+  {
+    name: "the two-digit hex format of a byte",
+    pattern: /\{[A-Za-z_]*:02x\}/,
+    owners: ["crates/base/src/hash.rs"],
+    hint: "rust_cli_base::hash::hex (sha256_hex for a digest)",
+  },
+  // 审查 X8：中毒的锁取内层只在 base 的 `sync`（以前约 100 个文件里 197 处手写（含 `RwLock` 与 `get_mut`），另有 13 个只转发的本地 `fn lock`）。按代码查。
+  {
+    name: "taking a poisoned lock's inner value",
+    pattern: /PoisonError::into_inner/,
+    code: true,
+    owners: ["crates/base/src/sync.rs"],
+    hint: "rust_cli_base::sync::{LockUnpoisoned, RwLockUnpoisoned} (.lock_unpoisoned(), .read_unpoisoned(), .write_unpoisoned())",
+  },
+];
+
+// ── 容易变的字符串只在常量模块里（工作线 F121，README §4.1 第 6 条；检查在 boundaries/literals.mjs）──
+
+/// 规则：字符串字面量里的写法（`pattern`）只许出现在 `owners`；`tests: true` 时测试也查。
+export const VOLATILE_LITERALS = [
+  {
+    name: "model id",
+    // 模型 ID 样子的写法：厂商前缀后接版本或系列（`glm-5.3`、`deepseek-v4-pro`、`claude-opus-5-5`、
+    // `us.anthropic.claude-sonnet-4-5-…`、`gpt-5.4`、`kimi-k3`）。前面不是字母、数字或 `_`。Anthropic 的前缀逐个写出
+    // （导出扫描只放过完整的模型 ID 写法）。
+    pattern: new RegExp(
+      `(?<![A-Za-z0-9_])(?:${[
+        "claude-opus",
+        "claude-sonnet",
+        "claude-haiku",
+        "claude-fable",
+        "claude-mythos",
+        "claude-1",
+        "claude-2",
+        "claude-3",
+        "claude-4",
+        "claude-5",
+        "claude-6",
+        "claude-7",
+        "claude-8",
+        "claude-9",
+        "glm-[a-z0-9]",
+        "deepseek-(?:v\\d|chat|reasoner|coder)",
+        "gpt-\\d",
+        "gemini-\\d",
+        "kimi-k\\d",
+        "qwen\\d",
+      ].join("|")})`,
+      "i",
+    ),
+    owners: ["crates/base/src/models.rs", "scripts/rust-cli/fixture/model.mjs"],
+    tests: true,
+    hint: "use rust_cli_base::models (scripts: fixture/model.mjs)",
+  },
+  {
+    name: "host name",
+    // 已知主机名（小写；品牌的写法 `Z.AI` 不算）：模型端点、账号服务、注册表、测试环境。测试环境的根域名拆开写（导出
+    // 门禁的 internal-host 拦它的原文）。
+    pattern: new RegExp(
+      `(?<![A-Za-z0-9-])(?:${[
+        "api\\.anthropic\\.com",
+        "(?:[a-z0-9-]+\\.)*z\\.ai",
+        "(?:[a-z0-9-]+\\.)*bigmodel\\.cn",
+        "api\\.deepseek\\.com",
+        "registry\\.npmjs\\.org",
+        "api\\.openai\\.com",
+        "(?:[a-z0-9-]+\\.)*openrouter\\.ai",
+        "(?:[a-z0-9-]+\\.)*opencode\\.ai",
+        `(?:[a-z0-9-]+\\.)*${["chat", "glm"].join("")}\\.site`,
+      ].join("|")})(?![A-Za-z0-9-])`,
+    ),
+    owners: ["crates/base/src/hosts.rs", "scripts/rust-cli/fixture/model.mjs"],
+    tests: true,
+    hint: "use rust_cli_base::hosts (scripts: fixture/model.mjs)",
+  },
+  {
+    name: "env var name",
+    // 整个字面量就是环境变量名的样子（大写字母、数字与 `_`，至少一个 `_`）：业务代码读写的环境变量名只在 base 的
+    // `names`（`names::env`、给用户程序的 `names::vars`）。只查产品代码；单个词的名字（`HOME`、`PATH`）样子上认不出，
+    // 收进 `names::env` 之后由“同一个名字只定义一处”的约定管。
+    pattern: /^_?[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)+$/,
+    owners: ["crates/base/src/names.rs"],
+    tests: false,
+    hint: "use rust_cli_base::names::env",
+  },
+  // 内置工具名只在 kernel-api 的 tool_names（F126，规则在 policy-vocabulary.mjs）。
+  TOOL_NAME_LITERAL,
+];
+
+/// 不查的文件：只在本仓库的对齐材料（parity 测试、轨迹比对与提示词提取的脚本等，导出时删掉）。vendor 与 JSON 数据不是
+/// Rust / JS 源码，本来不收。
+export const VOLATILE_UNCHECKED = [
+  /_parity_tests\.rs$/,
+  /^crates\/[^/]+\/tests\/parity(?:_[^/]+\.rs|\/)/,
+  new RegExp(
+    `^scripts/rust-cli/(?:${["or", "acle"].join("")}|prompts|bench|export|repo-only|app-protocol)/`,
+  ),
+  /^scripts\/rust-cli\/bench\.mjs$/,
+  // 发行版的实现（docs/specs/rust-cli/export.md §12）：只在本仓库，导出时 src 整目录换成占位。它的协议固定值（派生用的盐、
+  // 网关的拒绝码）写法像环境变量名而不是；不能按文件登记例外（导出树里没有这些文件，例外会成死项）。主机名照样取 base 的 hosts。
+  /^crates\/request-security-edition\/src\//,
+];
+
+/// 例外（按文件，每项写类别与理由）：`{ files, rules, reason }`，`rules` 是 VOLATILE_LITERALS 的 `name`。按 crate 分组
+/// 登记（前端与入口一组，适配器、平台、内核与脚本一组），环境变量名另一组。
+const FRONT_EXCEPTIONS = [];
+const CORE_EXCEPTIONS = [
+  {
+    files: ["crates/prompts/src/models_tests.rs"],
+    rules: ["model id"],
+    reason:
+      "解析器的输入样本：按 ID 认旧模型（chars_per_token）的各种写法（日期、Bedrock / Vertex 的后缀、下划线、长得像的 ID）",
+  },
+  {
+    files: ["crates/base/src/rule_url_tests.rs"],
+    rules: ["host name"],
+    reason: "解析器的输入样本：URL 规范化与端点判定（大小写、端口、空白、路径里与长得像的域名）",
+  },
+  {
+    files: ["crates/model/src/profiles_select_tests.rs"],
+    rules: ["model id", "host name"],
+    reason: "解析器的输入样本：请求方案表对各种 URL 与模型 ID 写法的命中",
+  },
+  {
+    files: ["crates/kernel-api/src/model_name_tests.rs"],
+    rules: ["model id"],
+    reason: "解析器的输入样本：`--model` 的各种写法（provider 前缀、团队项目的后缀）",
+  },
+  {
+    files: ["scripts/rust-cli/boundaries/literals.test.mjs"],
+    rules: ["model id", "host name"],
+    reason: "这条检查自己的测试：合成的违规样本",
+  },
+  {
+    files: ["scripts/rust-cli/boundaries/policy.mjs"],
+    rules: ["model id"],
+    reason: "这条检查自己的规则表：模型 ID 的前缀",
+  },
+  {
+    files: ["scripts/rust-cli/login-golden.mts", "scripts/rust-cli/team-plan-golden.mts"],
+    rules: ["model id"],
+    reason: "黄金文件的生成脚本：给 Node 喂固定的账号模型，产物是登录与团队套餐的黄金文件",
+  },
+];
+const ENV_NAME_EXCEPTIONS = [
+  {
+    files: ["crates/cli/build.rs", "crates/cli/src/commands/build_number.rs"],
+    rules: ["env var name"],
+    reason:
+      "构建脚本读 Cargo 与正式发版给的变量：build.rs（及它用 #[path] 引进的 build_number.rs）在编译期跑，不依赖 base",
+  },
+  {
+    files: ["crates/proc/src/identity.rs", "crates/proc/src/tree/table.rs"],
+    rules: ["env var name"],
+    reason: "proc 不依赖 base（依赖表里 proc 没有依赖）：给子进程 ps 的固定区域设置 LC_ALL=C",
+  },
+  {
+    files: ["crates/cli/src/process/signals.rs"],
+    rules: ["env var name"],
+    reason: "Windows 控制台事件的名字（CTRL_C 等），不是环境变量",
+  },
+  {
+    files: ["crates/platform/src/team/list.rs"],
+    rules: ["env var name"],
+    reason: "服务返回的枚举值（订阅方式 ONE_TIME），不是环境变量",
+  },
+  {
+    files: ["crates/cli/src/frontends/tui_usage.rs", "crates/platform/src/usage/mcp.rs"],
+    rules: ["env var name"],
+    reason:
+      "服务返回的枚举值（套餐额度的种类 TOKENS_LIMIT、CREDIT_LIMIT、TIME_LIMIT、MCP_USAGE），不是环境变量",
+  },
+  {
+    files: ["crates/tui-kit/src/app/widgets/doorway/mod.rs"],
+    rules: ["env var name"],
+    reason: "系统的网络错误码（EAI_AGAIN，与 ETIMEDOUT 等同表），不是环境变量",
+  },
+  {
+    files: ["crates/cli/src/frontends/app/declared.rs"],
+    rules: ["env var name"],
+    reason:
+      "App 的 Host 给的 Gen UI 输出根目录（ZCODE_GEN_UI_OUTPUT_ROOT，context.md §15.5）：base 是 foundation 层，不许知道 Host 的变量（host-env 词汇，app-protocol.md §9.2），只有入口层这一处读",
+  },
+  {
+    files: ["crates/cli/src/commands/desktop_app/system.rs"],
+    rules: ["env var name"],
+    reason:
+      "启动桌面端前去掉 ELECTRON_RUN_AS_NODE：base 是 foundation 层，不许知道 Electron 的词（app-protocol.md §9.2），只有这一处用",
+  },
+  {
+    files: ["crates/policy/src/shell/compound.rs"],
+    rules: ["env var name"],
+    reason: "shell 的内置变量表（判定复合命令用），不是本进程读写的变量",
+  },
+  {
+    files: ["crates/policy/src/removal.rs", "crates/policy/src/shell/safe_env.rs"],
+    rules: ["env var name"],
+    reason:
+      "权限判定的数据表：命令里出现的变量名（删除保护的家目录变量、可以安全前置的变量），不是本进程读写的变量",
+  },
+];
+export const VOLATILE_EXCEPTIONS = [
+  ...FRONT_EXCEPTIONS,
+  ...CORE_EXCEPTIONS,
+  ...ENV_NAME_EXCEPTIONS,
+  ...TOOL_NAME_EXCEPTIONS,
+  ...PUFFIN_LITERAL_EXCEPTIONS,
+];
+
+/** 文件名作为路径的一整段（F58）：`name` 里的正则字符转义。 */
+function pathSegment(name) {
+  const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`(?:^|[\\\\/])${escaped}(?=$|[\\\\/])`);
+}
+
+// ── 协议适配层与解耦（docs/specs/rust-cli/app-protocol.md §3、§9；用户 2026-10-25：“兼容 host 的代码一定要解耦，不能入侵
+// 核心逻辑……它应该和 tui 是同一个层级的”）。检查在 boundaries/decoupling.mjs。──
+
+/// 规划中的 crate：层与依赖在设计期就过 LAYER_RULES。建 crate 时把它挪到 LAYERS 与 ALLOWED（README §3.2 的表同步），
+/// 建好了还留在这里报错（protocol-core 与 protocol-zcode 在 P1 建好、已挪走）。
+export const PLANNED_CRATES = {
+  // 以后的 ACP（Agent Client Protocol）：只经框架与内核会话 API。
+  "protocol-acp": { layer: "frontend", allowed: ["base", "kernel-api", "protocol-core"] },
+};
+
+/// 内核不认识部署形态（boundaries/deployment.mjs，architecture.md §3）：这些层的产品代码里不出现说“在哪里跑”的词。
+export const DEPLOYMENT_NEUTRAL_LAYERS = ["kernel"];
+
+/// 部署形态的词：标识符里出现、或字符串字面量里作为一个词出现都算。
+export const DEPLOYMENT_TERMS = [
+  { id: "cloud", re: /cloud/i },
+  { id: "tenant", re: /tenant/i },
+];
+
+/// 词汇的例外：按文件登记，写理由；登记了却没有命中的是死项。
+export const DEPLOYMENT_TERM_EXCEPTIONS = [
+  {
+    file: "crates/policy/src/web_preapproved.rs",
+    reason: "WebFetch 预批准的域名清单里有 cloud.google.com（照参照名单逐字写）",
+  },
+];
+
+/// 端口 trait 上不许有的“种类”方法：问实现“你是不是某一种”、或“你有没有某个能力”。
+export const PORT_KIND_METHODS = [
+  { id: "is-kind", re: /^fn is_\w+\(&self\) -> bool$/ },
+  { id: "optional-port", re: /-> Option<&dyn / },
+];
+
+/// 这些层的 crate 里不能出现任何一种协议的词汇（协议是前端的事）。
+export const PROTOCOL_NEUTRAL_LAYERS = [
+  "foundation",
+  "kernel",
+  "adapter",
+  "platform",
+  "frontend-shared",
+  "ports",
+];
+
+// 协议前端的词汇与它的例外：表在 policy-protocols.mjs。
+export { PROTOCOLS, PROTOCOL_TERM_EXCEPTIONS } from "./policy-protocols.mjs";
+
+/// 按“当前前端是谁”分支的写法（只看代码；注释与字符串不算）。内核要的是与前端无关的能力位，不是前端的名字。
+export const FRONTEND_BRANCH_PATTERNS = [
+  { id: "frontend", re: /\b(?:frontend|Frontend|FrontendKind|front_end|FrontEnd)\b/ },
+  {
+    id: "app-mode",
+    re: /\b(?:app_mode|AppMode|is_app|in_app|desktop_mode|DesktopMode|is_desktop|is_mobile|is_tui|is_headless|headless_mode|tui_mode|host_mode|HostMode|ui_kind|UiKind|client_kind|ClientKind)\b/,
+  },
+  { id: "surface", re: /\b(?:surface|Surface|presentation_surface|PresentationSurface)\b/ },
+  {
+    id: "cfg-frontend",
+    re: /\bcfg!?\s*\(\s*(?:not\s*\(\s*)?(?:app|frontend|desktop|mobile|host|tui|headless)\b/,
+  },
+];
+
+/// 按前端分支的例外（按文件与精确片段，只在代码里找；测试文件不查这一条）。
+/// A0 盘点时已有（2026-10-25）：context 的 `Surface`（`-p` 与终端界面的提示词差别，照对齐对象的交互 / 非交互会话），
+/// runtime 按它选后台命令的期限。登记成例外并冻结变体（FROZEN_ENUMS）；App 不加第三个变体，要的差别做成与前端无关的
+/// 能力位（app-protocol.md §5.3、§9.6）。
+export const FRONTEND_BRANCH_EXCEPTIONS = [
+  ...["pub enum Surface", "pub surface: Surface", "fn new(surface: Surface)", "surface,"].map(
+    (fragment) => ({
+      file: "crates/context/src/config.rs",
+      fragment,
+      why: "已有的 Surface（A0 盘点）",
+    }),
+  ),
+  // CTX-P05（context.md §15.5、§15.10）：`!` 提示与 skill 提及改读会话钉住的前端能力（`SystemPin.shell_escape`、
+  // `FrontendTraits.typed_mentions`），context 里只剩导出这一行；`Surface` 只管 `-p` / TUI 形态的工具与期限。
+  {
+    file: "crates/context/src/lib.rs",
+    fragment: "ContextConfig, Surface}",
+    why: "已有的 Surface（A0 盘点）",
+  },
+  ...[
+    "ContextConfig, Surface}",
+    "ContextConfig::new(Surface::Interactive)",
+    "matches!(context.surface, Surface::Print)",
+  ].map((fragment) => ({
+    file: "crates/runtime/src/lib.rs",
+    fragment,
+    why: "已有的 Surface（A0 盘点）",
+  })),
+];
+
+/// 已有的“形态”枚举：变体固定。加一个变体就是给内核加一种前端分支，要先改设计（app-protocol.md §9.3）。
+export const FROZEN_ENUMS = [
+  {
+    file: "crates/context/src/config.rs",
+    name: "Surface",
+    variants: ["Print", "Interactive"],
+    why: "A0 盘点时已有：照对齐对象的交互 / 非交互会话；App 不加变体",
+  },
+];
+
+/// 中立层的 crate 只能声明这些 cargo feature（按前端开关的 feature 不许有）。值是理由。
+export const NEUTRAL_FEATURES = {
+  testing: "kernel-api 的测试替身（README §11 M0）",
+  parity: "读对齐基线的 parity 测试（export.md §5）",
+};
+
+// ── 厂商错误的解耦（docs/specs/rust-cli/provider-errors.md §2.1、§2.5、§11）。厂商码与厂商专有的字符串只在第 1 层（model 的
+// `errors/` 目录，厂商分类器）；第 2 层（`errors/dispose.rs`、transport）、query、session 与前端只认中性分类。检查在
+// boundaries/vendor.mjs。──
+
+// 厂商与协议的错误词表在 policy-vocabulary.mjs（合入 PG 与执行中转后本文件超过 800 行，照 F126 的做法挪出去）。
+export { VENDOR_ERROR_TERMS } from "./policy-vocabulary.mjs";
+
+/// 厂商错误词的例外：只按文件与精确片段（同 PROTOCOL_TERM_EXCEPTIONS），没用到的是死项。值 `why` 写理由。
+export const VENDOR_ERROR_TERM_EXCEPTIONS = [
+  {
+    file: "crates/node-records/src/usage.rs",
+    fragment: '"network_error"',
+    why: "model_usage.error_type 写 Node 的失败原因（usage.md D5）：Node 的 ModelFailureReason 里网络失败也叫这个词，不是智谱的结束原因",
+  },
+  {
+    file: "crates/base/src/plugin.rs",
+    fragment: 'pub const SENSITIVE_KEY: &str = "sensitive"',
+    why: "插件 manifest 的 userConfig 一项的敏感标记（ext.md §4.9，Node 与插件格式的字段名；ext 读、插件存储写配置值都用它，plugin-store.md §10），不是智谱的结束原因",
+  },
+];
+
+// ── 有含义的数字（docs/specs/rust-cli/constants.md §4，工作线 F122）。检查在 boundaries/numbers.mjs。──
+
+/// 换不了写法、确实没有含义的数字：全局放行的模式。`value` 是数值，`before` / `after` 是同一行里字面量前后的代码（已去掉
+/// 注释与字符串）的正则，`reason` 写为什么没有含义。每加一条，numbers.test.mjs 加一个用例。
+export const NUMBER_ALLOWED = [];
+
+/// 推送前“不许升高”（scripts/pre-push-rust-cli.mjs）：numbers.json 里某个文件的处数比推送基线大时逐项登记。`was` 是推送基线
+/// 里的值（没有为 0），`now` 是新的上限，`reason` 写用户的决定或“从 A 拆出”。
+export const NUMBER_RAISES = [...PUFFIN_NUMBER_RAISES];
+
+// 枢纽 DTO 的构造与内置工具名的词表（F126）：表在 policy-vocabulary.mjs。
+export { DTO_CONSTRUCTORS, DTO_CONSTRUCTOR_EXCEPTIONS } from "./policy-vocabulary.mjs";

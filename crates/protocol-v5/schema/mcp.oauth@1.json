@@ -1,0 +1,125 @@
+{
+  "key": "mcp.oauth@1",
+  "schemas": {
+    "Command.mcp.oauth.signIn": {
+      "type": "object",
+      "properties": {
+        "serverName": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "serverName"
+      ],
+      "additionalProperties": false
+    },
+    "Command.mcp.oauth.signOut": {
+      "type": "object",
+      "properties": {
+        "serverName": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "serverName"
+      ],
+      "additionalProperties": false
+    },
+    "CommandResult.mcp.oauth.signIn": {
+      "type": "object",
+      "properties": {
+        "authorizationUrl": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "authorizationUrl"
+      ]
+    },
+    "CommandResult.mcp.oauth.signOut": {
+      "type": "object",
+      "properties": {}
+    },
+    "Query.mcp.oauth.servers.params": {
+      "type": "object",
+      "properties": {}
+    },
+    "Query.mcp.oauth.servers.result": {
+      "type": "object",
+      "properties": {
+        "servers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "signedIn": {
+                "type": "boolean"
+              },
+              "needsAuth": {
+                "type": "boolean"
+              },
+              "pendingAuthorizationUrl": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "name",
+              "signedIn",
+              "needsAuth"
+            ]
+          },
+          "default": []
+        }
+      }
+    },
+    "Query.mcp.oauth.signInOutcome.params": {
+      "type": "object",
+      "properties": {
+        "serverName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authorizationUrl": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "serverName",
+        "authorizationUrl"
+      ]
+    },
+    "Query.mcp.oauth.signInOutcome.result": {
+      "type": "object",
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "signedIn",
+            "failed",
+            "replaced",
+            "ended"
+          ]
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "outcome"
+      ]
+    }
+  },
+  "fallbacks": {
+    "Query.mcp.oauth.signInOutcome.result.outcome": "ended"
+  },
+  "opaque": []
+}

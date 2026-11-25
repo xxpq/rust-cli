@@ -1,0 +1,26 @@
+[package]
+name = "rust-cli-node-records"
+description = "The Node CLI record format and its storage orchestration, shared by the SQLite and PostgreSQL session stores"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[lib]
+doctest = false
+
+[dependencies]
+# JS 语义的 JSON 文本与字符串（Node 记录逐字节一致）、MIME。
+rust-cli-base.workspace = true
+# 内核的消息、事实与 ID 类型（记录 ↔ 内核形状的换算）。
+rust-cli-kernel-api.workspace = true
+# 冷读取的骨架只读出 part 的 `type`，其余字段跳过（serde 的 Visitor，node-store.md §5.4）。
+serde.workspace = true
+serde_json.workspace = true
+# 编排：内容哈希（fork 与 artifact）与日志。行操作的错误是 kernel-api 的 `StoreError`，不用 anyhow。
+sha2.workspace = true
+tracing.workspace = true

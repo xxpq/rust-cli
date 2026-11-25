@@ -1,0 +1,24 @@
+{
+  "key": "session.report@1",
+  "schemas": {
+    "Command.row.setFeedback": {
+      "type": "object",
+      "properties": {
+        "feedback": {
+          "type": "string",
+          "enum": [
+            "none",
+            "up",
+            "down"
+          ]
+        }
+      },
+      "required": [
+        "feedback"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "fallbacks": {},
+  "opaque": []
+}

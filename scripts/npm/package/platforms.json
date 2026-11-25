@@ -1,0 +1,39 @@
+[
+  {
+    "id": "darwin-arm64",
+    "os": "darwin",
+    "cpu": "arm64",
+    "target": "aarch64-apple-darwin",
+    "runner": "macos-26"
+  },
+  {
+    "id": "linux-x64-gnu",
+    "os": "linux",
+    "cpu": "x64",
+    "libc": "glibc",
+    "target": "x86_64-unknown-linux-gnu",
+    "runner": "ubuntu-22.04"
+  },
+  {
+    "id": "linux-arm64-gnu",
+    "os": "linux",
+    "cpu": "arm64",
+    "libc": "glibc",
+    "target": "aarch64-unknown-linux-gnu",
+    "runner": "ubuntu-22.04-arm"
+  },
+  {
+    "id": "win32-x64",
+    "os": "win32",
+    "cpu": "x64",
+    "target": "x86_64-pc-windows-msvc",
+    "runner": "windows-2022"
+  },
+  {
+    "id": "win32-arm64",
+    "os": "win32",
+    "cpu": "arm64",
+    "target": "aarch64-pc-windows-msvc",
+    "runner": "windows-11-arm"
+  }
+]

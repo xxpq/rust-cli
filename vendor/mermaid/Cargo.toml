@@ -1,0 +1,23 @@
+# Mermaid 子集的文字渲染（上游 openai/codex 的 codex-rs/mermaid，提交 c3d3b142d，Apache-2.0）：kit 的 Markdown 用它画
+# ```mermaid 代码块（docs/specs/rust-cli/tui-kit.md §3.5）。
+# 第三方代码：不是 workspace 成员（根 Cargo.toml 的 workspace.exclude），不受本工程的 lints 与 clippy.toml 约束；
+# upstream/ 下的文件由 scripts/rust-cli/vendor/fetch.mjs 按 vendor/sources.json 生成，不手改。依赖同上游，版本由 workspace 的
+# Cargo.lock 决定。上游的测试要 insta，这里不跑；kit 的 Markdown 测试覆盖用到的部分。
+[package]
+name = "rust-cli-vendor-mermaid"
+version = "0.0.0"
+edition = "2024"
+license = "Apache-2.0"
+publish = false
+autobins = false
+autoexamples = false
+autotests = false
+autobenches = false
+
+[lib]
+path = "upstream/codex-rs/mermaid/src/lib.rs"
+doctest = false
+test = false
+
+[dependencies]
+unicode-width = "0.2"

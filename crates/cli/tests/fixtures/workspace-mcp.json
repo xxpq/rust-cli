@@ -1,0 +1,503 @@
+[
+  {
+    "name": "stdio servers with every optional field, legacy names and odd env keys",
+    "git": "repo",
+    "workspace": "repo",
+    "files": {
+      "repo/.zcode/config.json": {
+        "mcp": {
+          "servers": {
+            "full": {
+              "type": "stdio",
+              "command": "node",
+              "args": ["server.js", "--port", "3000"],
+              "env": {
+                "TOKEN": "secret",
+                "b": "y",
+                "Ä": "x",
+                "10": "ten",
+                "2": "two",
+                "Ａ": "wide",
+                "😀": "smile"
+              },
+              "cwd": "tools",
+              "isolation": "workspace",
+              "timeoutMs": 1500.5,
+              "alwaysLoad": true,
+              "protocolVersion": "legacy"
+            },
+            "bare": {
+              "command": "uvx",
+              "args": ["mcp-server"]
+            },
+            "absolute": {
+              "type": "stdio",
+              "command": "/usr/bin/env",
+              "cwd": "/opt/mcp"
+            },
+            "legacy": {
+              "command": "npx",
+              "environment": {
+                "A": "1"
+              },
+              "enable": false,
+              "timeout": 20,
+              "startup_timeout_sec": 5
+            },
+            "quoted": {
+              "command": "sh",
+              "args": ["-c", "echo \"héllo\"\t\\ done"]
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "http and sse servers, oauth, headers and legacy remote names",
+    "git": "repo",
+    "workspace": "repo",
+    "files": {
+      "repo/zcode.json": {
+        "mcp": {
+          "servers": {
+            "api": {
+              "type": "http",
+              "url": "https://mcp.example.com/v1?x=1",
+              "headers": {
+                "Authorization": "Bearer t"
+              },
+              "oauth": {
+                "type": "client_credentials",
+                "clientId": "c",
+                "clientSecret": "s"
+              }
+            },
+            "events": {
+              "type": "sse",
+              "url": "https://mcp.example.com/sse",
+              "protocolVersion": "2026-07-28"
+            },
+            "old": {
+              "type": "remote",
+              "url": "https://mcp.example.com/old",
+              "http_headers": {
+                "X-Key": "k"
+              }
+            },
+            "inferred": {
+              "url": "https://mcp.example.com/inferred",
+              "enabled": true,
+              "timeoutMs": 30000
+            },
+            "off": {
+              "type": "http",
+              "url": "https://mcp.example.com/off",
+              "enabled": false
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "an ancestor zcode.json declares, the user level shadows one, a nearer file has no servers",
+    "git": "repo",
+    "workspace": "repo/app",
+    "user": {
+      "mcp": {
+        "servers": {
+          "shadowed": {
+            "command": "user-owned"
+          }
+        }
+      }
+    },
+    "files": {
+      "repo/zcode.json": {
+        "mcp": {
+          "servers": {
+            "outer": {
+              "command": "outer",
+              "cwd": "bin"
+            },
+            "shadowed": {
+              "command": "project-owned"
+            },
+            "top": {
+              "command": "top"
+            }
+          }
+        }
+      },
+      "repo/app/zcode.json": {
+        "permission": {
+          "allowedTools": ["Read"]
+        }
+      }
+    }
+  },
+  {
+    "name": "a .zcode/config.json in an ancestor resolves cwd from the directory above .zcode",
+    "git": "repo",
+    "workspace": "repo/app",
+    "files": {
+      "repo/.zcode/config.json": {
+        "mcp": {
+          "servers": {
+            "dot": {
+              "command": "dot",
+              "cwd": "."
+            },
+            "up": {
+              "command": "up",
+              "cwd": "../x"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "the nearer layer replaces a server with the same name",
+    "git": "repo",
+    "workspace": "repo/app",
+    "files": {
+      "repo/zcode.json": {
+        "mcp": {
+          "servers": {
+            "both": {
+              "command": "from-outer"
+            }
+          }
+        }
+      },
+      "repo/app/.zcode/config.json": {
+        "mcp": {
+          "servers": {
+            "both": {
+              "command": "from-inner",
+              "cwd": "tools"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "windows unwraps cmd /c",
+    "platform": "win32",
+    "git": "repo",
+    "workspace": "repo",
+    "files": {
+      "repo/.zcode/config.json": {
+        "mcp": {
+          "servers": {
+            "wrapped": {
+              "command": "cmd",
+              "args": ["/c", "npx", "-y", "pkg"]
+            },
+            "wrappedExe": {
+              "command": "CMD.EXE",
+              "args": ["/c", "npx"]
+            },
+            "notWrapped": {
+              "command": "cmd",
+              "args": ["/k", "x"]
+            },
+            "nothingInside": {
+              "command": "cmd",
+              "args": ["/c"]
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "a broken project file blocks every declaration",
+    "git": "repo",
+    "workspace": "repo",
+    "files": {
+      "repo/zcode.json": "{",
+      "repo/.zcode/config.json": {
+        "mcp": {
+          "servers": {
+            "x": {
+              "command": "x"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "no git marker: only the workspace root",
+    "git": null,
+    "workspace": "ws",
+    "files": {
+      "zcode.json": {
+        "mcp": {
+          "servers": {
+            "above": {
+              "command": "above"
+            }
+          }
+        }
+      },
+      "ws/zcode.json": {
+        "mcp": {
+          "servers": {
+            "here": {
+              "command": "here"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "only .agents/mcp.json: every entry is checked on its own and a relative cwd is the workspace root",
+    "git": "repo",
+    "workspace": "repo",
+    "files": {
+      "repo/.agents/mcp.json": {
+        "$schema": "https://example.com/mcp.schema.json",
+        "mcpServers": {
+          "plain": {
+            "command": "npx",
+            "args": ["-y", "pkg"]
+          },
+          "relative": {
+            "type": "stdio",
+            "command": "node",
+            "args": ["s.js"],
+            "cwd": "tools",
+            "isolation": "workspace"
+          },
+          "absolute": {
+            "command": "/usr/bin/env",
+            "cwd": "/opt/mcp"
+          },
+          "remote": {
+            "type": "remote",
+            "url": "https://mcp.example.com/agents",
+            "http_headers": {
+              "X-Key": "k"
+            }
+          },
+          "off": {
+            "command": "off",
+            "enable": false
+          },
+          "broken": {
+            "type": "stdio"
+          },
+          "notAnObject": 5
+        }
+      }
+    }
+  },
+  {
+    "name": "the project config declares a server: .agents/mcp.json is not read",
+    "git": "repo",
+    "workspace": "repo",
+    "files": {
+      "repo/.zcode/config.json": {
+        "mcp": {
+          "servers": {
+            "project": {
+              "command": "project"
+            }
+          }
+        }
+      },
+      "repo/.agents/mcp.json": {
+        "mcpServers": {
+          "agents": {
+            "command": "agents"
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "an invalid project entry also keeps .agents/mcp.json out",
+    "git": "repo",
+    "workspace": "repo",
+    "files": {
+      "repo/zcode.json": {
+        "mcp": {
+          "servers": {
+            "bad": {
+              "type": "stdio"
+            }
+          }
+        }
+      },
+      "repo/.agents/mcp.json": {
+        "mcpServers": {
+          "agents": {
+            "command": "agents"
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "a project mcp.servers that is not an object keeps .agents/mcp.json out",
+    "git": "repo",
+    "workspace": "repo",
+    "files": {
+      "repo/zcode.json": {
+        "mcp": {
+          "servers": ["x"]
+        }
+      },
+      "repo/.agents/mcp.json": {
+        "mcpServers": {
+          "agents": {
+            "command": "agents"
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "an empty project map falls back; the user level shadows one name; sourcePaths is only .agents/mcp.json",
+    "git": "repo",
+    "workspace": "repo",
+    "user": {
+      "mcp": {
+        "servers": {
+          "mine": {
+            "command": "user-owned"
+          }
+        }
+      }
+    },
+    "files": {
+      "repo/zcode.json": {
+        "mcp": {
+          "servers": {}
+        },
+        "permission": {
+          "allowedTools": ["Read"]
+        }
+      },
+      "repo/.agents/mcp.json": {
+        "mcpServers": {
+          "mine": {
+            "command": "agents-mine"
+          },
+          "theirs": {
+            "command": "agents-theirs"
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "only the workspace root has the fallback file, not the git root",
+    "git": "repo",
+    "workspace": "repo/app",
+    "files": {
+      "repo/.agents/mcp.json": {
+        "mcpServers": {
+          "outer": {
+            "command": "outer"
+          }
+        }
+      },
+      "repo/app/.agents/mcp.json": {
+        "mcpServers": {
+          "inner": {
+            "command": "inner",
+            "cwd": "../bin"
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "a broken project file keeps .agents/mcp.json out",
+    "git": "repo",
+    "workspace": "repo",
+    "files": {
+      "repo/zcode.json": "{",
+      "repo/.agents/mcp.json": {
+        "mcpServers": {
+          "agents": {
+            "command": "agents"
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "a broken .agents/mcp.json declares nothing",
+    "git": "repo",
+    "workspace": "repo",
+    "files": {
+      "repo/.agents/mcp.json": "{"
+    }
+  },
+  {
+    "name": "mcpServers that is not an object declares nothing",
+    "git": "repo",
+    "workspace": "repo",
+    "files": {
+      "repo/.agents/mcp.json": {
+        "mcpServers": [
+          {
+            "command": "x"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "a .agents/mcp.json in the config shape declares nothing",
+    "git": "repo",
+    "workspace": "repo",
+    "files": {
+      "repo/.agents/mcp.json": {
+        "mcp": {
+          "servers": {
+            "x": {
+              "command": "x"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "the user-level ~/.agents/mcp.json does not hide a project declaration with the same name",
+    "git": "repo",
+    "workspace": "repo",
+    "home": {
+      ".agents/mcp.json": {
+        "mcpServers": {
+          "both": {
+            "command": "user-both"
+          },
+          "mine": {
+            "command": "user-mine"
+          }
+        }
+      }
+    },
+    "files": {
+      "repo/.zcode/config.json": {
+        "mcp": {
+          "servers": {
+            "both": {
+              "command": "project-both"
+            }
+          }
+        }
+      }
+    }
+  }
+]

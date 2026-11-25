@@ -1,0 +1,1201 @@
+{
+  "key": "core@1",
+  "schemas": {
+    "CommandEnvelopeSchema": {
+      "type": "object",
+      "properties": {
+        "commandId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "type": "object",
+          "properties": {
+            "hostId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "workspaceKey": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sessionId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "hostId"
+          ]
+        },
+        "expect": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "col": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "v": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "col",
+                "id",
+                "v"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "col": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "field": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "value": {}
+              },
+              "required": [
+                "col",
+                "id",
+                "field",
+                "value"
+              ]
+            }
+          ]
+        },
+        "payload": {
+          "default": {}
+        }
+      },
+      "required": [
+        "commandId",
+        "type",
+        "target"
+      ]
+    },
+    "CommandResultSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "accepted"
+            },
+            "effects": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "topic": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "epoch": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "seq": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "topic",
+                  "epoch",
+                  "seq"
+                ]
+              },
+              "default": []
+            },
+            "noop": {
+              "type": "boolean",
+              "default": false
+            },
+            "result": {}
+          },
+          "required": [
+            "kind"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "rejected"
+            },
+            "code": {
+              "type": "string",
+              "minLength": 1
+            },
+            "current": {},
+            "allowed": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "field": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "code"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "duplicate"
+            },
+            "original": {}
+          },
+          "required": [
+            "kind",
+            "original"
+          ]
+        }
+      ]
+    },
+    "CommandTargetSchema": {
+      "type": "object",
+      "properties": {
+        "hostId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "workspaceKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sessionId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "hostId"
+      ]
+    },
+    "CreditSchema": {
+      "type": "object",
+      "properties": {
+        "sub": {
+          "type": "string",
+          "minLength": 1
+        },
+        "n": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991,
+          "default": 1
+        }
+      },
+      "required": [
+        "sub"
+      ]
+    },
+    "CursorSchema": {
+      "type": "object",
+      "properties": {
+        "epoch": {
+          "type": "string",
+          "minLength": 1
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "epoch",
+        "seq"
+      ]
+    },
+    "DeltaOpSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "op": {
+              "type": "string",
+              "const": "entity.put"
+            },
+            "col": {
+              "type": "string",
+              "minLength": 1
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "v": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "data": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {}
+            }
+          },
+          "required": [
+            "op",
+            "col",
+            "id",
+            "v",
+            "data"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "op": {
+              "type": "string",
+              "const": "entity.append"
+            },
+            "col": {
+              "type": "string",
+              "minLength": 1
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "chunk": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "op",
+            "col",
+            "id",
+            "path",
+            "chunk"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "op": {
+              "type": "string",
+              "const": "entity.remove"
+            },
+            "col": {
+              "type": "string",
+              "minLength": 1
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "op",
+            "col",
+            "id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "op": {
+              "type": "string",
+              "const": "state.set"
+            },
+            "patch": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {}
+            }
+          },
+          "required": [
+            "op",
+            "patch"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "op": {
+              "type": "string",
+              "const": "entity.patch"
+            },
+            "col": {
+              "type": "string",
+              "minLength": 1
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "v": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "fields": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {}
+            },
+            "unset": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "op",
+            "col",
+            "id",
+            "v",
+            "fields"
+          ]
+        }
+      ]
+    },
+    "DeltaSchema": {},
+    "ExitSchema": {
+      "type": "object",
+      "properties": {
+        "reason": {
+          "type": "string",
+          "enum": [
+            "client_close",
+            "server_shutdown",
+            "replaced",
+            "protocol_violation",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "reason"
+      ]
+    },
+    "ExpectSchema": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "col": {
+              "type": "string",
+              "minLength": 1
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "v": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "col",
+            "id",
+            "v"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "col": {
+              "type": "string",
+              "minLength": 1
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "field": {
+              "type": "string",
+              "minLength": 1
+            },
+            "value": {}
+          },
+          "required": [
+            "col",
+            "id",
+            "field",
+            "value"
+          ]
+        }
+      ]
+    },
+    "FrameSchema": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sub": {
+          "type": "string",
+          "minLength": 1
+        },
+        "epoch": {
+          "type": "string",
+          "minLength": 1
+        },
+        "from": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "to": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "body": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "snapshot"
+                },
+                "snapshot": {
+                  "type": "object",
+                  "properties": {
+                    "state": {
+                      "type": "object",
+                      "propertyNames": {
+                        "type": "string"
+                      },
+                      "additionalProperties": {},
+                      "default": {}
+                    },
+                    "collections": {
+                      "type": "object",
+                      "propertyNames": {
+                        "type": "string"
+                      },
+                      "additionalProperties": {
+                        "type": "array",
+                        "items": {}
+                      },
+                      "default": {}
+                    }
+                  }
+                }
+              },
+              "required": [
+                "kind",
+                "snapshot"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "deltas"
+                },
+                "deltas": {
+                  "type": "array",
+                  "items": {}
+                }
+              },
+              "required": [
+                "kind",
+                "deltas"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "topic",
+        "sub",
+        "epoch",
+        "from",
+        "to",
+        "body"
+      ]
+    },
+    "InitializeParamsSchema": {
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "peer": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "desktop-window",
+                "web-page",
+                "mobile-h5",
+                "bot",
+                "host",
+                "cli",
+                "unknown"
+              ],
+              "default": "unknown"
+            },
+            "name": {
+              "type": "string",
+              "default": ""
+            },
+            "build": {
+              "type": "object",
+              "properties": {
+                "version": {
+                  "type": "string",
+                  "default": ""
+                },
+                "commit": {
+                  "type": "string"
+                }
+              },
+              "default": {
+                "version": ""
+              }
+            }
+          },
+          "default": {
+            "kind": "unknown",
+            "name": "",
+            "build": {
+              "version": ""
+            }
+          }
+        },
+        "caps": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          }
+        },
+        "require": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "locale": {
+          "type": "string"
+        },
+        "contract": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hostServices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "clientId",
+        "caps"
+      ]
+    },
+    "InitializeRejectionSchema": {
+      "type": "object",
+      "properties": {
+        "missing": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "cap": {
+                "type": "string"
+              },
+              "mine": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "default": []
+              },
+              "theirs": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "default": []
+              }
+            },
+            "required": [
+              "cap"
+            ]
+          }
+        },
+        "upgrade": {
+          "type": "object",
+          "properties": {
+            "target": {
+              "type": "string",
+              "enum": [
+                "client",
+                "server",
+                "both"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          "required": [
+            "target"
+          ]
+        },
+        "contract": {
+          "type": "object",
+          "properties": {
+            "client": {
+              "type": "string"
+            },
+            "server": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "client",
+            "server"
+          ]
+        }
+      }
+    },
+    "InitializeResultSchema": {
+      "type": "object",
+      "properties": {
+        "connectionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "principal": {
+          "type": "string",
+          "enum": [
+            "local-window",
+            "web-page",
+            "paired-mobile",
+            "bot",
+            "upstream-host",
+            "unknown"
+          ]
+        },
+        "delivery": {
+          "type": "string",
+          "enum": [
+            "continuous",
+            "replayable"
+          ]
+        },
+        "caps": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "limits": {
+          "type": "object",
+          "properties": {
+            "maxMessageBytes": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            },
+            "initialCredit": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "maxMessageBytes",
+            "initialCredit"
+          ]
+        },
+        "server": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "default": "host"
+            },
+            "build": {
+              "type": "object",
+              "properties": {
+                "version": {
+                  "type": "string",
+                  "default": ""
+                },
+                "commit": {
+                  "type": "string"
+                }
+              },
+              "default": {
+                "version": ""
+              }
+            },
+            "hostId": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "default": {
+            "kind": "host",
+            "build": {
+              "version": ""
+            }
+          }
+        },
+        "contract": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "connectionId",
+        "principal",
+        "delivery",
+        "caps",
+        "limits",
+        "contract"
+      ]
+    },
+    "NoParamsSchema": {
+      "type": "object",
+      "properties": {}
+    },
+    "ProtocolErrorSchema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "not_applied",
+            "unknown"
+          ]
+        },
+        "details": {}
+      },
+      "required": [
+        "code",
+        "message",
+        "retryable"
+      ],
+      "additionalProperties": {}
+    },
+    "QueryEnvelopeSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "type": "object",
+          "properties": {
+            "hostId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "workspaceKey": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sessionId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "hostId"
+          ]
+        },
+        "params": {},
+        "at": {
+          "type": "object",
+          "properties": {
+            "epoch": {
+              "type": "string",
+              "minLength": 1
+            },
+            "seq": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "epoch",
+            "seq"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "target"
+      ]
+    },
+    "QueryResultSchema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "ok"
+            },
+            "data": {},
+            "cursor": {
+              "type": "object",
+              "properties": {
+                "epoch": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "seq": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "epoch",
+                "seq"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "data"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "stale"
+            },
+            "cursor": {
+              "type": "object",
+              "properties": {
+                "epoch": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "seq": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "epoch",
+                "seq"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "cursor"
+          ]
+        }
+      ]
+    },
+    "ServiceEnvelopeSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "type": "object",
+          "properties": {
+            "workspaceKey": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sessionId": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "workspaceKey"
+          ]
+        },
+        "params": {}
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "SnapshotSchema": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {},
+          "default": {}
+        },
+        "collections": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "array",
+            "items": {}
+          },
+          "default": {}
+        }
+      }
+    },
+    "SubscribeSchema": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sub": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "epoch": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "seq": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "epoch",
+                "seq"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "topic",
+        "sub"
+      ]
+    },
+    "SubscribedSchema": {
+      "type": "object",
+      "properties": {
+        "sub": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cursor": {
+          "type": "object",
+          "properties": {
+            "epoch": {
+              "type": "string",
+              "minLength": 1
+            },
+            "seq": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "epoch",
+            "seq"
+          ]
+        },
+        "pending": {
+          "type": "string",
+          "enum": [
+            "source_unavailable"
+          ]
+        }
+      },
+      "required": [
+        "sub"
+      ]
+    },
+    "SubscriptionFailedSchema": {
+      "type": "object",
+      "properties": {
+        "sub": {
+          "type": "string",
+          "minLength": 1
+        },
+        "error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "retryable": {
+              "type": "boolean"
+            },
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "not_applied",
+                "unknown"
+              ]
+            },
+            "details": {}
+          },
+          "required": [
+            "code",
+            "message",
+            "retryable"
+          ],
+          "additionalProperties": {}
+        }
+      },
+      "required": [
+        "sub",
+        "error"
+      ]
+    },
+    "UnsubscribeSchema": {
+      "type": "object",
+      "properties": {
+        "sub": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "sub"
+      ]
+    }
+  },
+  "fallbacks": {
+    "ExitSchema.reason": "unknown",
+    "InitializeParamsSchema.peer.kind": "unknown",
+    "InitializeRejectionSchema.upgrade.target": "both",
+    "InitializeResultSchema.principal": "unknown",
+    "InitializeResultSchema.delivery": "replayable",
+    "ProtocolErrorSchema.message": "",
+    "ProtocolErrorSchema.retryable": false,
+    "ProtocolErrorSchema.outcome": "unknown",
+    "SubscribedSchema.pending": "source_unavailable",
+    "SubscriptionFailedSchema.error.message": "",
+    "SubscriptionFailedSchema.error.retryable": false,
+    "SubscriptionFailedSchema.error.outcome": "unknown"
+  },
+  "opaque": [
+    "CommandEnvelopeSchema.expect.anyOf[1].value",
+    "CommandEnvelopeSchema.payload",
+    "CommandResultSchema.oneOf[0].result",
+    "CommandResultSchema.oneOf[1].current",
+    "CommandResultSchema.oneOf[2].original",
+    "DeltaOpSchema.oneOf[0].data{}",
+    "DeltaOpSchema.oneOf[3].patch{}",
+    "DeltaOpSchema.oneOf[4].fields{}",
+    "DeltaSchema",
+    "ExpectSchema.anyOf[1].value",
+    "FrameSchema.body.anyOf[0].snapshot.state{}",
+    "FrameSchema.body.anyOf[0].snapshot.collections{}[]",
+    "FrameSchema.body.anyOf[1].deltas[]",
+    "ProtocolErrorSchema.details",
+    "ProtocolErrorSchema{}",
+    "QueryEnvelopeSchema.params",
+    "QueryResultSchema.oneOf[0].data",
+    "ServiceEnvelopeSchema.params",
+    "SnapshotSchema.state{}",
+    "SnapshotSchema.collections{}[]",
+    "SubscriptionFailedSchema.error.details",
+    "SubscriptionFailedSchema.error{}"
+  ]
+}

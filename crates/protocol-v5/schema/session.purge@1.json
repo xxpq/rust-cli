@@ -1,0 +1,157 @@
+{
+  "key": "session.purge@1",
+  "schemas": {
+    "Command.sessionData.purge": {
+      "type": "object",
+      "properties": {
+        "sessionIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "memory": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "sessionIds"
+      ],
+      "additionalProperties": false
+    },
+    "CommandResult.sessionData.purge": {
+      "type": "object",
+      "properties": {
+        "deleted": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sessionId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "sessionId",
+              "bytes"
+            ]
+          },
+          "default": []
+        },
+        "kept": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sessionId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reason": {
+                "type": "string",
+                "enum": [
+                  "referenced"
+                ]
+              }
+            },
+            "required": [
+              "sessionId",
+              "reason"
+            ]
+          },
+          "default": []
+        },
+        "failed": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sessionId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "code": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "code"
+            ]
+          },
+          "default": []
+        },
+        "memoryBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991,
+          "default": 0
+        }
+      }
+    },
+    "Query.sessionData.measure.params": {
+      "type": "object",
+      "properties": {
+        "sessionIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "memory": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "sessionIds"
+      ]
+    },
+    "Query.sessionData.measure.result": {
+      "type": "object",
+      "properties": {
+        "sessions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sessionId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "sessionId",
+              "bytes"
+            ]
+          },
+          "default": []
+        },
+        "memoryBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991,
+          "default": 0
+        }
+      }
+    }
+  },
+  "fallbacks": {
+    "CommandResult.sessionData.purge.kept[].reason": "referenced"
+  },
+  "opaque": []
+}

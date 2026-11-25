@@ -1,0 +1,40 @@
+[package]
+name = "rust-cli-protocol-v5"
+description = "The ZCode Protocol v5 front end of rust-cli (handshake, capabilities, agent topics, subscriptions; generated wire types)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[lib]
+doctest = false
+
+[dependencies]
+async-trait.workspace = true
+# 附件上传的字节：chunk 的解码、Artifact 的 data URL 与读面的分块（protocol-v5.md §39）。
+base64.workspace = true
+# 会话列表的变化流（kernel-api 的 FactStream）按工作区过滤、合进 actor 的 select（protocol-v5.md §14）。
+futures-util.workspace = true
+# 任务经 base 的 TaskScope；epoch 的随机部分经 base 的 random（README §4）。
+rust-cli-base.workspace = true
+# 会话列表的事实、种子与变化流（StoreQueries、SessionFacts、WorkspaceRef）：内核的前端无关类型，v5 只投影（protocol-v5.md §1、§14）。
+rust-cli-kernel-api.workspace = true
+rust-cli-protocol-core.workspace = true
+# 生成的线上类型（src/generated）派生 Serialize / Deserialize。
+serde = { workspace = true, features = ["derive"] }
+serde_json.workspace = true
+# 取账号凭据的端口总时限（T2，protocol-v5.md §30）。
+tokio = { workspace = true, features = ["macros", "sync", "time"] }
+# 插件写操作的取消令牌（端口 PluginAdmin::apply 的参数，protocol-v5.md §72.1）：同 kernel-api 的中止信号用的那一个。
+tokio-util.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+# 存储的替身 MemoryStore（与 node-store 同一个变化发布端），会话列表的进程内测试用。
+rust-cli-kernel-api = { workspace = true, features = ["testing"] }
+# test-util：截止时刻的测试用虚拟时钟（protocol-v5.md §35.4）。
+tokio = { workspace = true, features = ["io-util", "macros", "rt", "sync", "test-util", "time"] }

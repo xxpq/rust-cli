@@ -1,0 +1,461 @@
+{
+  "key": "agent@1",
+  "schemas": {
+    "AgentCuaEndSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "v": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "sessionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "turnId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "turnCompleted",
+            "turnFailed",
+            "sessionEnded"
+          ]
+        },
+        "endedAt": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "v",
+        "sessionId",
+        "turnId",
+        "reason",
+        "endedAt"
+      ]
+    },
+    "AgentCuaOperationSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "v": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "sessionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "turnId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "toolCallId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "startedAt": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "v",
+        "sessionId",
+        "turnId",
+        "toolCallId",
+        "startedAt"
+      ]
+    },
+    "AgentCuaPermissionRequestSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "v": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "sessionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "turnId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "toolCallId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "occurredAt": {
+          "type": "number"
+        },
+        "missing": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "accessibility",
+              "screen_recording"
+            ]
+          },
+          "default": []
+        },
+        "permissionStatus": {
+          "type": "object",
+          "properties": {
+            "platform": {
+              "type": "string",
+              "default": "darwin"
+            },
+            "grantOwner": {
+              "type": "string",
+              "default": ""
+            },
+            "accessibility": {
+              "type": "string",
+              "enum": [
+                "granted",
+                "stale",
+                "denied"
+              ]
+            },
+            "screenRecording": {
+              "type": "string",
+              "enum": [
+                "granted",
+                "denied",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "accessibility",
+            "screenRecording"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "v",
+        "sessionId",
+        "toolCallId",
+        "occurredAt",
+        "permissionStatus"
+      ]
+    },
+    "AgentExitSchema": {
+      "type": "object",
+      "properties": {
+        "reason": {
+          "type": "string",
+          "enum": [
+            "restart",
+            "release",
+            "shutdown",
+            "crashed",
+            "exited",
+            "spawnFailed"
+          ]
+        },
+        "code": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "signal": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "reason"
+      ]
+    },
+    "AgentStateSchema": {
+      "type": "object",
+      "properties": {
+        "phase": {
+          "type": "string",
+          "enum": [
+            "starting",
+            "migrating",
+            "ready",
+            "degraded",
+            "stopped"
+          ],
+          "default": "starting"
+        },
+        "migration": {
+          "type": "object",
+          "properties": {
+            "step": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "total": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "message": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          "required": [
+            "step",
+            "total"
+          ]
+        },
+        "providers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "ready": {
+                "type": "boolean"
+              },
+              "error": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "ready"
+            ]
+          },
+          "default": []
+        },
+        "hostServices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "build": {
+          "type": "string",
+          "default": ""
+        },
+        "exit": {
+          "type": "object",
+          "properties": {
+            "reason": {
+              "type": "string",
+              "enum": [
+                "restart",
+                "release",
+                "shutdown",
+                "crashed",
+                "exited",
+                "spawnFailed"
+              ]
+            },
+            "code": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "signal": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "default": null
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason"
+          ]
+        },
+        "storage": {
+          "type": "object",
+          "properties": {
+            "databaseId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "phase": {
+              "type": "string",
+              "enum": [
+                "checking",
+                "waiting_for_lock",
+                "migrating",
+                "committing",
+                "ready",
+                "failed"
+              ]
+            },
+            "migration": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "initialize",
+                    "upgrade"
+                  ]
+                },
+                "executedCount": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "committedCount": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "lastAppliedMigrationId": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 128
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "kind",
+                "executedCount",
+                "committedCount"
+              ]
+            },
+            "errorCode": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "sqliteCode": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "systemCode": {
+              "type": "string",
+              "maxLength": 64
+            },
+            "migrationId": {
+              "type": "string",
+              "maxLength": 128
+            }
+          },
+          "required": [
+            "databaseId",
+            "phase"
+          ]
+        },
+        "diagnostics": {
+          "type": "object",
+          "properties": {
+            "implementation": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version": {
+              "type": "string",
+              "default": ""
+            },
+            "protocolDigest": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "implementation"
+          ]
+        }
+      }
+    },
+    "Command.agent.release": {
+      "type": "object",
+      "properties": {
+        "force": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Command.agent.restart": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    },
+    "CommandResult.agent.release": {
+      "type": "object",
+      "properties": {
+        "released": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "released"
+      ]
+    },
+    "CommandResult.agent.restart": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  "fallbacks": {
+    "AgentCuaEndSchema.reason": "turnFailed",
+    "AgentCuaPermissionRequestSchema.missing[]": "accessibility",
+    "AgentCuaPermissionRequestSchema.permissionStatus.accessibility": "denied",
+    "AgentCuaPermissionRequestSchema.permissionStatus.screenRecording": "unknown",
+    "AgentExitSchema.reason": "exited",
+    "AgentStateSchema.phase": "starting",
+    "AgentStateSchema.exit.reason": "exited",
+    "AgentStateSchema.storage.phase": "checking",
+    "AgentStateSchema.storage.migration.kind": "none"
+  },
+  "opaque": []
+}

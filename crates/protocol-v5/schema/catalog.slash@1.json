@@ -1,0 +1,77 @@
+{
+  "key": "catalog.slash@1",
+  "schemas": {
+    "Query.slash.commands.params": {
+      "type": "object",
+      "properties": {}
+    },
+    "Query.slash.commands.result": {
+      "type": "object",
+      "properties": {
+        "commands": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "default": ""
+              },
+              "argumentHint": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "skill",
+                  "command"
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "kind"
+            ]
+          },
+          "default": []
+        }
+      }
+    },
+    "SlashCommandEntrySchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "default": ""
+        },
+        "argumentHint": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "skill",
+            "command"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "kind"
+      ]
+    }
+  },
+  "fallbacks": {
+    "Query.slash.commands.result.commands[].kind": "command",
+    "SlashCommandEntrySchema.kind": "command"
+  },
+  "opaque": []
+}

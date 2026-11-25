@@ -1,0 +1,2 @@
+New skills discovered in {{path}}, now available via the Skill tool:
+{{lines}}

@@ -1,0 +1,32 @@
+{
+  "key": "session.fork@1",
+  "schemas": {
+    "Command.turn.fork": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "sessionId"
+      ],
+      "additionalProperties": false
+    },
+    "CommandResult.turn.fork": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "sessionId"
+      ]
+    }
+  },
+  "fallbacks": {},
+  "opaque": []
+}

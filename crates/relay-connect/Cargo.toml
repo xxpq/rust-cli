@@ -1,0 +1,27 @@
+[package]
+name = "rust-cli-relay-connect"
+description = "Reach a sandbox executor through the exec relay: bring the sandbox up and dial it"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[lib]
+doctest = false
+
+[dependencies]
+async-trait.workspace = true
+rust-cli-base.workspace = true
+# Connector 与 WebSocket 的 Link（F142）。
+rust-cli-exec-transport.workspace = true
+# 拉起沙盒的 `/up` 是一次普通的 HTTP 请求。
+rust-cli-net.workspace = true
+serde_json.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["macros", "rt", "rt-multi-thread"] }

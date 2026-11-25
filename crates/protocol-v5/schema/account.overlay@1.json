@@ -1,0 +1,54 @@
+{
+  "key": "account.overlay@1",
+  "schemas": {
+    "Command.account.overlay.set": {
+      "type": "object",
+      "properties": {
+        "builtinConfigDigest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "providers": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "minLength": 1
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "entitled": {
+                "type": "boolean"
+              },
+              "current": {
+                "type": "boolean"
+              },
+              "models": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "required": [
+              "entitled"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "builtinConfigDigest",
+        "providers"
+      ],
+      "additionalProperties": false
+    },
+    "CommandResult.account.overlay.set": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  "fallbacks": {},
+  "opaque": []
+}

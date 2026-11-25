@@ -1,0 +1,234 @@
+{
+  "key": "catalog.plugins.reference@1",
+  "schemas": {
+    "Query.plugins.referenceCatalog.params": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "Query.plugins.referenceCatalog.result": {
+      "type": "object",
+      "properties": {
+        "authority": {
+          "type": "string",
+          "enum": [
+            "session",
+            "workspace"
+          ]
+        },
+        "plugins": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string"
+              },
+              "pluginId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "marketplace": {
+                "type": "string",
+                "minLength": 1
+              },
+              "icon": {
+                "type": "string"
+              },
+              "displayName": {
+                "type": "string"
+              },
+              "displayNameI18n": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "description": {
+                "type": "string"
+              },
+              "descriptionI18n": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "conflictingPluginIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "skillQualifiedNames": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "mcpServerNames": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "subagentNames": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              }
+            },
+            "required": [
+              "pluginId",
+              "name",
+              "marketplace",
+              "enabled"
+            ]
+          },
+          "default": []
+        }
+      },
+      "required": [
+        "authority"
+      ]
+    },
+    "Query.plugins.referenceCatalogWithCategory.params": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "Query.plugins.referenceCatalogWithCategory.result": {
+      "type": "object",
+      "properties": {
+        "authority": {
+          "type": "string",
+          "enum": [
+            "session",
+            "workspace"
+          ]
+        },
+        "plugins": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string"
+              },
+              "pluginId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "marketplace": {
+                "type": "string",
+                "minLength": 1
+              },
+              "icon": {
+                "type": "string"
+              },
+              "displayName": {
+                "type": "string"
+              },
+              "displayNameI18n": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "description": {
+                "type": "string"
+              },
+              "descriptionI18n": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "conflictingPluginIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "skillQualifiedNames": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "mcpServerNames": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "subagentNames": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              }
+            },
+            "required": [
+              "pluginId",
+              "name",
+              "marketplace",
+              "enabled"
+            ]
+          },
+          "default": []
+        }
+      },
+      "required": [
+        "authority"
+      ]
+    }
+  },
+  "fallbacks": {
+    "Query.plugins.referenceCatalog.result.authority": "workspace",
+    "Query.plugins.referenceCatalogWithCategory.result.authority": "workspace"
+  },
+  "opaque": []
+}

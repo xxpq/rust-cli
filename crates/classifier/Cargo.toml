@@ -1,0 +1,37 @@
+[package]
+name = "rust-cli-classifier"
+description = "The auto mode classifier of rust-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[lib]
+doctest = false
+
+[features]
+# 读对照基线的请求比对（docs/specs/rust-cli/auto-classifier.md §15.10），只在完整的源码仓库编译（export.md §5）。
+parity = []
+
+[dependencies]
+async-trait.workspace = true
+futures-util.workspace = true
+# 锁的取用（base 的 `sync`）、JS 的 JSON 文本与模型名（base 的 `js`、`models`）。
+rust-cli-base.workspace = true
+rust-cli-kernel-api.workspace = true
+# 安全监视器的提示（prompts 的 `auto_mode`）。
+rust-cli-prompts.workspace = true
+regex.workspace = true
+serde_json.workspace = true
+# 按代理排队的信号量与请求时限。
+tokio = { workspace = true, features = ["sync", "time", "macros"] }
+tokio-util.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+rust-cli-kernel-api = { workspace = true, features = ["testing"] }
+tokio = { workspace = true, features = ["macros", "rt", "rt-multi-thread", "sync", "time", "test-util"] }

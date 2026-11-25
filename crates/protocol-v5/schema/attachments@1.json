@@ -1,0 +1,323 @@
+{
+  "key": "attachments@1",
+  "schemas": {
+    "AttachmentBeginResultSchema": {
+      "type": "object",
+      "properties": {
+        "uploadId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+        }
+      },
+      "required": [
+        "uploadId"
+      ]
+    },
+    "AttachmentCommitResultSchema": {
+      "type": "object",
+      "properties": {
+        "attachmentId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "attachmentId",
+        "ref"
+      ]
+    },
+    "AttachmentRefSchema": {
+      "type": "object",
+      "properties": {
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fileName": {
+          "type": "string",
+          "default": ""
+        },
+        "mime": {
+          "type": "string",
+          "default": "application/octet-stream"
+        },
+        "bytes": {
+          "type": "number",
+          "minimum": 0,
+          "default": 0
+        },
+        "previewRef": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ref"
+      ]
+    },
+    "Command.attachment.abort": {
+      "type": "object",
+      "properties": {
+        "uploadId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+        }
+      },
+      "required": [
+        "uploadId"
+      ],
+      "additionalProperties": false
+    },
+    "Command.attachment.begin": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "mime": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 255,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9!#$&^_.+-]*\\/[A-Za-z0-9][A-Za-z0-9!#$&^_.+-]*(;.*)?$"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20971520
+        }
+      },
+      "required": [
+        "name",
+        "mime",
+        "size"
+      ],
+      "additionalProperties": false
+    },
+    "Command.attachment.chunk": {
+      "type": "object",
+      "properties": {
+        "uploadId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "bytes": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "uploadId",
+        "offset",
+        "bytes"
+      ],
+      "additionalProperties": false
+    },
+    "Command.attachment.commit": {
+      "type": "object",
+      "properties": {
+        "uploadId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^(sha256:)?[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "uploadId",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "Query.attachment.previewSource.params": {
+      "type": "object",
+      "properties": {
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rowId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attachmentIndex": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "ref"
+      ]
+    },
+    "Query.attachment.previewSource.result": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "local_path"
+            },
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "mediaType": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "kind",
+            "path",
+            "mediaType"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "chunked"
+            }
+          },
+          "required": [
+            "kind"
+          ]
+        }
+      ]
+    },
+    "Query.attachment.read.params": {
+      "type": "object",
+      "properties": {
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rowId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attachmentIndex": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991,
+          "default": 0
+        },
+        "length": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 524288,
+          "default": 524288
+        }
+      },
+      "required": [
+        "ref"
+      ]
+    },
+    "Query.attachment.read.result": {
+      "type": "object",
+      "properties": {
+        "dataBase64": {
+          "type": "string"
+        },
+        "mediaType": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "totalBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "nextOffset": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "dataBase64",
+        "mediaType",
+        "totalBytes",
+        "nextOffset"
+      ]
+    },
+    "Query.attachment.stat.params": {
+      "type": "object",
+      "properties": {
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rowId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attachmentIndex": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "ref"
+      ]
+    },
+    "Query.attachment.stat.result": {
+      "type": "object",
+      "properties": {
+        "mediaType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "totalBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2147483648
+        },
+        "mtimeMs": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "mediaType",
+        "totalBytes"
+      ]
+    }
+  },
+  "fallbacks": {},
+  "opaque": []
+}

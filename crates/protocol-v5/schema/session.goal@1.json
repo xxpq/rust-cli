@@ -1,0 +1,105 @@
+{
+  "key": "session.goal@1",
+  "schemas": {
+    "Command.goal.pause": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    },
+    "Command.goal.resume": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    },
+    "Command.goal.send": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "displayText": {
+          "type": "string"
+        },
+        "disposition": {
+          "type": "string",
+          "enum": [
+            "startNow",
+            "enqueue",
+            "guide",
+            "keepQueue",
+            "discardQueue"
+          ]
+        },
+        "modelSelection": {
+          "type": "object",
+          "properties": {
+            "providerId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "modelId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "options": {
+              "type": "object",
+              "properties": {
+                "reasoningLevel": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "providerId",
+            "modelId"
+          ],
+          "additionalProperties": false
+        },
+        "mode": {
+          "type": "string"
+        },
+        "planEnabled": {
+          "type": "boolean"
+        },
+        "expectedHeldQueueItemIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "CommandResult.goal.send": {
+      "type": "object",
+      "properties": {
+        "delivery": {
+          "type": "string",
+          "enum": [
+            "startNow",
+            "queue",
+            "guide"
+          ]
+        },
+        "inputId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "delivery",
+        "inputId"
+      ]
+    }
+  },
+  "fallbacks": {
+    "CommandResult.goal.send.delivery": "queue"
+  },
+  "opaque": []
+}

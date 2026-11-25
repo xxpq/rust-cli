@@ -1,0 +1,3679 @@
+[
+  {
+    "provider": "account:zai-individual-coding-plan",
+    "model": "GLM-5.3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:zai-individual-coding-plan",
+    "model": "GLM-5.3-Flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:zai-team-coding-plan",
+    "model": "GLM-5.3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:zai-team-coding-plan",
+    "model": "GLM-5.3-Flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:zai-start-plan",
+    "model": "GLM-5.3-Flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:zai-start-plan",
+    "model": "GLM-5.2",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:zai-start-plan",
+    "model": "GLM-5-Turbo",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "account:bigmodel-individual-coding-plan",
+    "model": "GLM-5.3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:bigmodel-individual-coding-plan",
+    "model": "GLM-5.3-Flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:bigmodel-team-coding-plan",
+    "model": "GLM-5.3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:bigmodel-team-coding-plan",
+    "model": "GLM-5.3-Flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:bigmodel-start-plan",
+    "model": "GLM-5.3-Flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:bigmodel-start-plan",
+    "model": "GLM-5.2",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:bigmodel-start-plan",
+    "model": "GLM-5-Turbo",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "account:zai-offpeak-idle-plan",
+    "model": "GLM-5.3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:zai-offpeak-idle-plan",
+    "model": "GLM-5.3-Flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:bigmodel-offpeak-idle-plan",
+    "model": "GLM-5.3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:bigmodel-offpeak-idle-plan",
+    "model": "GLM-5.3-Flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:zai-highspeed-card",
+    "model": "GLM-5.3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:zai-highspeed-card",
+    "model": "GLM-5.3-Flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:bigmodel-highspeed-card",
+    "model": "GLM-5.3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "account:bigmodel-highspeed-card",
+    "model": "GLM-5.3-Flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-api",
+    "model": "GLM-5.3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-api",
+    "model": "GLM-5.3-Flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-5.3",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"low\",\"reasoning\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"max\",\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-5.3-Flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"low\",\"reasoning\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"max\",\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "glm-5.3-flashx",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"reasoning_effort\":\"low\"}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"reasoning_effort\":\"high\"}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-5V-Turbo",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-5.1",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-5.1-Highspeed",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-5",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-5-Turbo",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-4.7",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-4.7-FlashX",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-4.7-Flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-4.6",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-4.5-Air",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":98304}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-4.5",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":98304}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-4.6V",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-4.6V-Flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-4.6V-FlashX",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-4.1V-Thinking-FlashX",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-4.1V-Thinking-Flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-4-FlashX-250414",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":16384}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-4-Flash-250414",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":16384}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "GLM-4V-Flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":1024}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "codegeex-4",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "charglm-4",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":4096}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:zai-standard-api",
+    "model": "emohaa",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":4096}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-api",
+    "model": "GLM-5.3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-api",
+    "model": "GLM-5.3-Flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-5.3",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"low\",\"reasoning\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"max\",\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-5.3-Flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"low\",\"reasoning\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"max\",\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-5V-Turbo",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-5.1",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-5.1-Highspeed",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-5",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-5-Turbo",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-4.7",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-4.7-FlashX",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-4.7-Flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-4.6",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-4.5-Air",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":98304}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-4.5",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":98304}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-4.6V",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-4.6V-Flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-4.6V-FlashX",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-4.1V-Thinking-FlashX",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-4.1V-Thinking-Flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-4-FlashX-250414",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":16384}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-4-Flash-250414",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":16384}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "GLM-4V-Flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":1024}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "codegeex-4",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "charglm-4",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":4096}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:bigmodel-standard-api",
+    "model": "emohaa",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":4096}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:moonshot-kimi",
+    "model": "kimi-k3.1-pro",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:moonshot-kimi",
+    "model": "kimi-k3.1-pro-highspeed",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:moonshot-kimi",
+    "model": "kimi-k3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:moonshot-kimi",
+    "model": "kimi-k2.7-code",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":98304}",
+    "reasoningLevel": {
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:moonshot-kimi",
+    "model": "kimi-k2.6",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":98304}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:moonshot-kimi",
+    "model": "kimi-k2.7-code-highspeed",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":98304}",
+    "reasoningLevel": {
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:moonshot-kimi",
+    "model": "k3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:moonshot-kimi",
+    "model": "k3-256k",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:kimi-code-cn",
+    "model": "k3.1-pro",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:kimi-code-cn",
+    "model": "k3.1-pro-highspeed",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:kimi-code-cn",
+    "model": "k3",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:kimi-code-cn",
+    "model": "k3-256k",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:kimi-code-cn",
+    "model": "kimi-for-coding",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:kimi-code-cn",
+    "model": "kimi-for-coding-highspeed",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":98304}",
+    "reasoningLevel": {
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:kimi-code-intl",
+    "model": "k3.1-pro",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:kimi-code-intl",
+    "model": "k3.1-pro-highspeed",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:kimi-code-intl",
+    "model": "k3",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:kimi-code-intl",
+    "model": "k3-256k",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:kimi-code-intl",
+    "model": "kimi-for-coding",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:kimi-code-intl",
+    "model": "kimi-for-coding-highspeed",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":98304}",
+    "reasoningLevel": {
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:minimax",
+    "model": "MiniMax-M3.1-Flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":524288}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:minimax",
+    "model": "MiniMax-M3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":32000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:minimax",
+    "model": "MiniMax-M2.7",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":32000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:minimax",
+    "model": "MiniMax-M2.7-highspeed",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":32000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:minimax",
+    "model": "MiniMax-M2.5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":32000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:minimax",
+    "model": "MiniMax-M2.5-highspeed",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":32000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:minimax-m-plan-cn",
+    "model": "MiniMax-M3.1-Flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":524288}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:minimax-m-plan-cn",
+    "model": "MiniMax-M3.1-Flash-Preview",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":32000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:deepseek",
+    "model": "deepseek-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":384000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:deepseek",
+    "model": "deepseek-v4-pro",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":384000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-cn",
+    "model": "qwen3.8-max",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-cn",
+    "model": "qwen3.8-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-cn",
+    "model": "qwen3.7-max",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-cn",
+    "model": "qwen3.7-plus",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-cn",
+    "model": "qwen3.7-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-cn",
+    "model": "qwen3.6-plus",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-cn",
+    "model": "qwen3.6-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-cn",
+    "model": "qwen3.5-plus",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-cn",
+    "model": "qwen3.5-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-cn",
+    "model": "qwen3-max",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-cn",
+    "model": "qwen-plus",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-cn",
+    "model": "qwen-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-cn",
+    "model": "qwen3-vl-plus",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-intl",
+    "model": "qwen3.8-max",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "medium": "{\"reasoning_effort\":\"medium\"}",
+      "xhigh": "{\"reasoning_effort\":\"xhigh\"}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-intl",
+    "model": "qwen3.8-flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "medium": "{\"reasoning_effort\":\"medium\"}",
+      "xhigh": "{\"reasoning_effort\":\"xhigh\"}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-intl",
+    "model": "qwen3.8-omni-flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":16384}",
+    "reasoningLevel": {
+      "none": "{\"reasoning_effort\":\"none\"}",
+      "minimal": "{\"reasoning_effort\":\"minimal\"}",
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "medium": "{\"reasoning_effort\":\"medium\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "xhigh": "{\"reasoning_effort\":\"xhigh\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-intl",
+    "model": "qwen3.7-max",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"enable_thinking\":false}",
+      "enabled": "{\"enable_thinking\":true}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-intl",
+    "model": "qwen3.7-plus",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"enable_thinking\":false}",
+      "enabled": "{\"enable_thinking\":true}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-intl",
+    "model": "qwen3.7-flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"enable_thinking\":false}",
+      "enabled": "{\"enable_thinking\":true}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-intl",
+    "model": "qwen3.6-plus",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"enable_thinking\":false}",
+      "enabled": "{\"enable_thinking\":true}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-intl",
+    "model": "qwen3.6-flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"enable_thinking\":false}",
+      "enabled": "{\"enable_thinking\":true}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-intl",
+    "model": "qwen3.5-plus",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"enable_thinking\":false}",
+      "enabled": "{\"enable_thinking\":true}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-intl",
+    "model": "qwen3.5-flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"enable_thinking\":false}",
+      "enabled": "{\"enable_thinking\":true}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-intl",
+    "model": "qwen3-max",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-intl",
+    "model": "qwen-plus",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"enable_thinking\":false}",
+      "enabled": "{\"enable_thinking\":true}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-intl",
+    "model": "qwen-flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"enable_thinking\":false}",
+      "enabled": "{\"enable_thinking\":true}"
+    }
+  },
+  {
+    "provider": "personal:qwen-alibaba-model-studio-intl",
+    "model": "qwen3-vl-plus",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"enable_thinking\":false}",
+      "enabled": "{\"enable_thinking\":true}"
+    }
+  },
+  {
+    "provider": "personal:qwen-coding-plan-cn",
+    "model": "qwen3.7-plus",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"enable_thinking\":false}",
+      "enabled": "{\"enable_thinking\":true}"
+    }
+  },
+  {
+    "provider": "personal:qwen-token-plan-team-cn",
+    "model": "qwen3.8-max",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "medium": "{\"reasoning_effort\":\"medium\"}",
+      "xhigh": "{\"reasoning_effort\":\"xhigh\"}"
+    }
+  },
+  {
+    "provider": "personal:qwen-token-plan-team-cn",
+    "model": "qwen3.8-flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "medium": "{\"reasoning_effort\":\"medium\"}",
+      "xhigh": "{\"reasoning_effort\":\"xhigh\"}"
+    }
+  },
+  {
+    "provider": "personal:xiaomi-mimo",
+    "model": "mimo-v2.6-pro",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:xiaomi-mimo",
+    "model": "mimo-v2.6-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:xiaomi-mimo",
+    "model": "mimo-v2.5-pro",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:xiaomi-mimo",
+    "model": "mimo-v2.5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:xiaomi-mimo-token-plan",
+    "model": "mimo-v2.6-pro",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:xiaomi-mimo-token-plan",
+    "model": "mimo-v2.6-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:tencent-tokenhub-cn",
+    "model": "hy3",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning_effort\":\"none\"}",
+      "high": "{\"reasoning_effort\":\"high\"}"
+    }
+  },
+  {
+    "provider": "personal:tencent-tokenhub-cn",
+    "model": "hy4-preview",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":64000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning_effort\":\"none\"}",
+      "high": "{\"reasoning_effort\":\"high\"}"
+    }
+  },
+  {
+    "provider": "personal:tencent-tokenhub-intl",
+    "model": "hy3",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning_effort\":\"none\"}",
+      "high": "{\"reasoning_effort\":\"high\"}"
+    }
+  },
+  {
+    "provider": "personal:tencent-tokenhub-intl",
+    "model": "hy4-preview",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":64000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning_effort\":\"none\"}",
+      "high": "{\"reasoning_effort\":\"high\"}"
+    }
+  },
+  {
+    "provider": "personal:volcengine-ark",
+    "model": "doubao-seed-evolving",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":256000}",
+    "reasoningLevel": {
+      "none": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:volcengine-ark",
+    "model": "doubao-seed-2-1-pro-260915",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":256000}",
+    "reasoningLevel": {
+      "none": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:volcengine-ark",
+    "model": "doubao-seed-2-1-lite-260915",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":256000}",
+    "reasoningLevel": {
+      "none": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:volcengine-ark",
+    "model": "doubao-seed-2-1-turbo-260628",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":256000}",
+    "reasoningLevel": {
+      "none": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:volcengine-coding-plan",
+    "model": "doubao-seed-2.1-pro",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "none": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:volcengine-coding-plan",
+    "model": "doubao-seed-2.1-lite",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "none": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:volcengine-agent-plan",
+    "model": "doubao-seed-2.1-pro",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":256000}",
+    "reasoningLevel": {
+      "none": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:volcengine-agent-plan",
+    "model": "doubao-seed-2.1-lite",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":256000}",
+    "reasoningLevel": {
+      "none": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:stepfun",
+    "model": "step-5-preview",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":64000}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:stepfun",
+    "model": "step-3.7-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:stepfun-step-plan",
+    "model": "step-5-preview",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":64000}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:stepfun-step-plan",
+    "model": "step-3.7-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openai",
+    "model": "gpt-6-astra",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openai",
+    "model": "gpt-5.6-terra",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openai",
+    "model": "gpt-6.1-sol",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openai",
+    "model": "gpt-6.1-terra",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openai",
+    "model": "gpt-6-luna",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openai",
+    "model": "gpt-5.6-sol",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openai",
+    "model": "gpt-5.6-luna",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openai",
+    "model": "gpt-5.6",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openai",
+    "model": "gpt-5.4",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:openai",
+    "model": "gpt-5.4-pro",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:openai",
+    "model": "gpt-5.4-mini",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:openai",
+    "model": "gpt-5.4-nano",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:openai",
+    "model": "gpt-5.3-codex",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:anthropic",
+    "model": "claude-fable-5-1",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:anthropic",
+    "model": "claude-opus-5-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:anthropic",
+    "model": "claude-sonnet-5-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:anthropic",
+    "model": "claude-haiku-5-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:anthropic",
+    "model": "claude-fable-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:anthropic",
+    "model": "claude-opus-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:anthropic",
+    "model": "claude-sonnet-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:anthropic",
+    "model": "claude-haiku-4-5-20251001",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:xai",
+    "model": "grok-build-0.1",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:xai",
+    "model": "grok-4.7",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:xai",
+    "model": "grok-4.6",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:xai",
+    "model": "grok-4.3",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:siliconflow-cn",
+    "model": "zai-org/GLM-5.3",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "enabled": "{\"enable_thinking\":true}"
+    }
+  },
+  {
+    "provider": "personal:siliconflow-cn",
+    "model": "deepseek-ai/DeepSeek-V4-Flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":393216}",
+    "reasoningLevel": {
+      "disabled": "{\"enable_thinking\":false}",
+      "high": "{\"enable_thinking\":true,\"reasoning_effort\":\"high\"}",
+      "max": "{\"enable_thinking\":true,\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:siliconflow-cn",
+    "model": "moonshotai/Kimi-K2.7-Code",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":98304}",
+    "reasoningLevel": {
+      "enabled": "{\"enable_thinking\":true}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "minimax/minimax-m3.1-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":524288}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "moonshotai/kimi-k3.1-pro",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":943718}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "anthropic/claude-fable-5.1",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "openai/gpt-6-astra",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "deepseek/deepseek-v4-pro",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":384000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "moonshotai/kimi-k3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "z-ai/glm-5.3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "qwen/qwen3.8-max",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "minimax/minimax-m3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":32000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "openai/gpt-6.1-sol",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "openai/gpt-6-luna",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "anthropic/claude-opus-5.5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "anthropic/claude-sonnet-5.5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "anthropic/claude-haiku-5.5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "x-ai/grok-4.7",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":450000}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"output_config\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "z-ai/glm-5.3-flashx",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "xiaomi/mimo-v2.6-pro",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "xiaomi/mimo-v2.6-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "openai/gpt-5.6-sol",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"output_config\":{\"effort\":\"none\"}}",
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "anthropic/claude-opus-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "xiaomi/mimo-v2.5-pro",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "x-ai/grok-4.6",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":384000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "qwen/qwen3.8-max-0902",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "minimal": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"minimal\"}}",
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "openai/gpt-5.6-terra",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"output_config\":{\"effort\":\"none\"}}",
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "openai/gpt-5.6-luna",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"output_config\":{\"effort\":\"none\"}}",
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "openai/gpt-5.6",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"output_config\":{\"effort\":\"none\"}}",
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "openai/gpt-5.4",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"output_config\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "openai/gpt-5.4-pro",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"output_config\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "openai/gpt-5.4-mini",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"output_config\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "openai/gpt-5.4-nano",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"output_config\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "openai/gpt-5.3-codex",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"output_config\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "anthropic/claude-sonnet-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "anthropic/claude-haiku-4.5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "anthropic/claude-opus-4.8",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "anthropic/claude-opus-4.7",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "anthropic/claude-opus-4.6",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "anthropic/claude-opus-4.5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "anthropic/claude-sonnet-4.6",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "anthropic/claude-sonnet-4.5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "deepseek/deepseek-v4-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":384000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "moonshotai/kimi-k2.7-code",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":98304}",
+    "reasoningLevel": {
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "moonshotai/kimi-k2.6",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":98304}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "moonshotai/kimi-k2.5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":98304}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "z-ai/glm-5.3-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "z-ai/glm-5.2",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "z-ai/glm-5.1",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "z-ai/glm-5v-turbo",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "z-ai/glm-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "z-ai/glm-5-turbo",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "z-ai/glm-4.7",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "z-ai/glm-4.7-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "z-ai/glm-4.6",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "z-ai/glm-4.6v",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "z-ai/glm-4.5-air",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":98304}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "z-ai/glm-4.5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":98304}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "qwen/qwen3.8-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "qwen/qwen3.7-max",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "qwen/qwen3.7-plus",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "qwen/qwen3.7-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "qwen/qwen3.6-plus",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "qwen/qwen3.6-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "qwen/qwen3.5-plus-20260420",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "qwen/qwen3-vl-plus",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":32768}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "qwen/qwen3-vl-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "minimax/minimax-m2.7",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":32000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "minimax/minimax-m2.5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":32000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "xiaomi/mimo-v2.5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "x-ai/grok-build-0.1",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:openrouter",
+    "model": "x-ai/grok-4.3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-responses",
+    "model": "gpt-6-luna",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-responses",
+    "model": "grok-4.7",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-responses",
+    "model": "gpt-5.6-luna",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-responses",
+    "model": "grok-4.6",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":500000}",
+    "reasoningLevel": {
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-messages",
+    "model": "minimax-m3",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-messages",
+    "model": "qwen3.8-max",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-messages",
+    "model": "qwen3.8-flash",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"enabled\"},\"output_config\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-messages",
+    "model": "claude-haiku-5-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-messages",
+    "model": "minimax-m2.7",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "enabled": "{}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-messages",
+    "model": "minimax-m2.5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "enabled": "{}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-messages",
+    "model": "qwen3.7-max",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-messages",
+    "model": "qwen3.7-plus",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-messages",
+    "model": "qwen3.6-plus",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "minimax-m3.1-flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "kimi-k3.1-pro",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "glm-5.3-flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "glm-5.3",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "kimi-k3",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "kimi-k2.7-code",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":262144}",
+    "reasoningLevel": {
+      "enabled": "{}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "deepseek-v4.1-flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":384000}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "deepseek-v4-pro",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":384000}",
+    "reasoningLevel": {
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "mimo-v2.6-pro",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "mimo-v2.6-flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "mimo-v2.5",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "enabled": "{}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "mimo-v2.5-pro",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "enabled": "{}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "glm-5.2",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "glm-5.1",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":32768}",
+    "reasoningLevel": {
+      "enabled": "{}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "kimi-k2.6",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "enabled": "{}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "deepseek-v4-flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":384000}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "deepseek-v4-flash-vision-exp",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":384000}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "hy4-preview",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":64000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning_effort\":\"none\"}",
+      "high": "{\"reasoning_effort\":\"high\"}"
+    }
+  },
+  {
+    "provider": "personal:opencode-go-chat",
+    "model": "hy3",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning_effort\":\"none\"}",
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "gpt-6-astra",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "gpt-6.1-sol",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "gpt-6-luna",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "grok-4.7",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "gpt-5.6-sol",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "gpt-5.6-terra",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "gpt-5.6-luna",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "gpt-5.5",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "gpt-5.5-pro",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "gpt-5.4",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "gpt-5.4-pro",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "gpt-5.4-mini",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "gpt-5.4-nano",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "none": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "gpt-5.3-codex",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "gpt-5.3-codex-spark",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"reasoning\":{\"effort\":\"low\"}}",
+      "medium": "{\"reasoning\":{\"effort\":\"medium\"}}",
+      "high": "{\"reasoning\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"reasoning\":{\"effort\":\"xhigh\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "gpt-5.2",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-responses",
+    "model": "gpt-5.1",
+    "apiType": "openai-responses",
+    "maxOutputTokens": "{\"max_output_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "claude-fable-5-1",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "qwen3.7-max",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "qwen3.6-plus",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "qwen3.5-plus",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":65536}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "claude-opus-5-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "claude-sonnet-5-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "claude-haiku-5-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "claude-fable-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "claude-opus-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "claude-sonnet-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "low": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"low\"}}",
+      "medium": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"medium\"}}",
+      "high": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}",
+      "xhigh": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"xhigh\"}}",
+      "max": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "claude-haiku-4-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "claude-opus-4-8",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "claude-opus-4-7",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "claude-opus-4-6",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "claude-opus-4-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "claude-sonnet-4-6",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "claude-sonnet-4-5",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"adaptive\"},\"output_config\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-messages",
+    "model": "qwen3.7-plus",
+    "apiType": "anthropic-messages",
+    "maxOutputTokens": "{\"max_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-chat",
+    "model": "kimi-k3",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "low": "{\"reasoning_effort\":\"low\"}",
+      "high": "{\"reasoning_effort\":\"high\"}",
+      "max": "{\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-chat",
+    "model": "minimax-m3",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-chat",
+    "model": "deepseek-v4-pro",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":384000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"reasoning_effort\":\"low\"}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"reasoning_effort\":\"high\"}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-chat",
+    "model": "glm-5.2",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"max\",\"reasoning\":{\"effort\":\"max\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-chat",
+    "model": "big-pickle",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-chat",
+    "model": "mimo-v2.5-free",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-chat",
+    "model": "hy3-free",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-chat",
+    "model": "ling-3.0-flash-fin-free",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-chat",
+    "model": "nemotron-3-ultra-free",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-chat",
+    "model": "muse-spark-1.2-contributor-free",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-chat",
+    "model": "mimo-v2.6-flash-free",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":131072}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-chat",
+    "model": "minimax-m2.7",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":32000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-chat",
+    "model": "deepseek-v4-flash",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":384000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"}}",
+      "low": "{\"thinking\":{\"type\":\"enabled\"},\"reasoning_effort\":\"low\"}",
+      "high": "{\"thinking\":{\"type\":\"enabled\"},\"reasoning_effort\":\"high\"}",
+      "max": "{\"thinking\":{\"type\":\"enabled\"},\"reasoning_effort\":\"max\"}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-chat",
+    "model": "glm-5.1",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":64000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  },
+  {
+    "provider": "personal:opencode-zen-chat",
+    "model": "nemotron-3.5-lightning-free",
+    "apiType": "openai-chat-completions",
+    "maxOutputTokens": "{\"max_completion_tokens\":128000}",
+    "reasoningLevel": {
+      "disabled": "{\"thinking\":{\"type\":\"disabled\"},\"enable_thinking\":false,\"reasoning_effort\":\"none\",\"reasoning\":{\"effort\":\"none\"}}",
+      "enabled": "{\"thinking\":{\"type\":\"enabled\"},\"enable_thinking\":true,\"reasoning_effort\":\"high\",\"reasoning\":{\"effort\":\"high\"}}"
+    }
+  }
+]

@@ -1,0 +1,49 @@
+{
+  "key": "hooks.pretrust@1",
+  "schemas": {
+    "Command.hooks.trustGrant": {
+      "type": "object",
+      "properties": {
+        "bundleDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "hookDeclarationDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "bundleDigest",
+        "hookDeclarationDigest"
+      ],
+      "additionalProperties": false
+    },
+    "CommandResult.hooks.trustGrant": {
+      "type": "object",
+      "properties": {
+        "accepted": {
+          "type": "boolean"
+        },
+        "reasonCode": {
+          "type": "string",
+          "enum": [
+            "workspace_hooks_blocked_by_policy",
+            "workspace_hooks_bundle_changed",
+            "workspace_hooks_snapshot_mismatch",
+            "workspace_hooks_policy_requires_pretrust",
+            "workspace_hooks_trust_store_corrupt",
+            "workspace_hooks_config_unreadable"
+          ]
+        }
+      },
+      "required": [
+        "accepted"
+      ]
+    }
+  },
+  "fallbacks": {
+    "CommandResult.hooks.trustGrant.reasonCode": "workspace_hooks_config_unreadable"
+  },
+  "opaque": []
+}
