@@ -70,7 +70,7 @@ fn executable_models_match_the_node_registry() {
 fn the_bundled_builtin_is_the_repository_copy() {
     // 仓库的内置配置更新后，随包的副本要一起更新（platform.md §3.1）。仓库的那份不在 `packages/rust-cli` 下，
     // Windows 上可能检出成 CRLF；随包的副本固定 LF（修复线 F56），所以按 LF 比较。
-    let repository = include_str!("../../../../../../config/provider/zcode-builtin.json");
+    let repository = include_str!("../../assets/zcode-builtin.json");
     assert_eq!(BUNDLED_BUILTIN, repository.replace("\r\n", "\n"));
 }
 
