@@ -496,16 +496,16 @@ pub fn failure_text(lang: Lang, name: &str, failure: &MachineFailure) -> String 
         ),
         // F107（remote-exec.md §28.6）：这个平台没有包（Intel Mac）、上传的执行器被系统杀掉（签名无效）。
         (Lang::En, MachineFailure::NoPackage { package }) => format!(
-            "There's no zcode executor package for {name} (it would be {package}), and no compatible executor is installed there. Install zcode on that machine with `npm i -g @mbearo/zcode`, then connect again."
+            "There's no zcode executor package for {name} (it would be {package}), and no compatible executor is installed there. Install zcode on that machine with `npm i -g @x-studio/zcode`, then connect again."
         ),
         (Lang::Zh, MachineFailure::NoPackage { package }) => format!(
-            "没有 {name} 这种平台的 zcode 执行器包（应该是 {package}），那台机器上也没有兼容的执行器。请在那台机器上用 `npm i -g @mbearo/zcode` 装好 zcode，然后再连。"
+            "没有 {name} 这种平台的 zcode 执行器包（应该是 {package}），那台机器上也没有兼容的执行器。请在那台机器上用 `npm i -g @x-studio/zcode` 装好 zcode，然后再连。"
         ),
         (Lang::En, MachineFailure::Unsigned) => format!(
-            "The uploaded zcode executor was killed on {name}: macOS refuses to run it because its signature is not valid. Install zcode on that machine with `npm i -g @mbearo/zcode`, or sign the file there with `codesign -s -`."
+            "The uploaded zcode executor was killed on {name}: macOS refuses to run it because its signature is not valid. Install zcode on that machine with `npm i -g @x-studio/zcode`, or sign the file there with `codesign -s -`."
         ),
         (Lang::Zh, MachineFailure::Unsigned) => format!(
-            "上传到 {name} 的 zcode 执行器被系统杀掉了：macOS 认为它的签名无效，不让它运行。请在那台机器上用 `npm i -g @mbearo/zcode` 装好 zcode，或者在那台机器上用 `codesign -s -` 给它签名。"
+            "上传到 {name} 的 zcode 执行器被系统杀掉了：macOS 认为它的签名无效，不让它运行。请在那台机器上用 `npm i -g @x-studio/zcode` 装好 zcode，或者在那台机器上用 `codesign -s -` 给它签名。"
         ),
         (Lang::En, MachineFailure::Refused(m)) => {
             format!("The executor on {name} refused the connection: {m}")

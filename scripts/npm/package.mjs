@@ -105,7 +105,7 @@ export async function stagePackage({ id, binary, output, sourceCommit, notices =
     await copyFile(binary, join(output, "bin", executable));
     await chmod(join(output, "bin", executable), 0o755);
     pkg = {
-      name: `@mbearo/zcode-${id}`,
+      name: `@x-studio/zcode-${id}`,
       version: metadata.version,
       description: `ZCode Rust CLI binary for ${id}`,
       license: metadata.license,
@@ -131,7 +131,7 @@ export async function stagePackage({ id, binary, output, sourceCommit, notices =
     );
     await writeFile(
       join(output, "README.md"),
-      `# ${pkg.name}\n\nPlatform binary for [@mbearo/zcode](https://www.npmjs.com/package/@mbearo/zcode). Install the entry package instead.\n`,
+      `# ${pkg.name}\n\nPlatform binary for [@x-studio/zcode](https://www.npmjs.com/package/@x-studio/zcode). Install the entry package instead.\n`,
     );
     // 原样复制：许可证原文里有 CRLF，不做换行转换。
     await copyFile(notices, join(output, "THIRD-PARTY-NOTICES.txt"));
@@ -139,7 +139,7 @@ export async function stagePackage({ id, binary, output, sourceCommit, notices =
     pkg = {
       ...metadata,
       optionalDependencies: Object.fromEntries(
-        platforms.map((item) => [`@mbearo/zcode-${item.id}`, metadata.version]),
+        platforms.map((item) => [`@x-studio/zcode-${item.id}`, metadata.version]),
       ),
     };
     await cp(join(template, "bin"), join(output, "bin"), { recursive: true });

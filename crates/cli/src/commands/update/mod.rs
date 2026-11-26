@@ -39,7 +39,7 @@ Options:
 /// 没有标记时 `zcode update` 的报错（update.md §9）。链接是 npm 入口包的页面
 /// （用户决定 2026-10-23，工作线 F71；以前没有链接）：没有标记时不知道包名，只在这里写死，有标记时的链接由启动器给的包名
 /// 拼（`install.rs`）。
-const UNDETECTED: &str = "Error: Could not detect the ZCode installation method. Please update manually: https://www.npmjs.com/package/@mbearo/zcode";
+const UNDETECTED: &str = "Error: Could not detect the ZCode installation method. Please update manually: https://www.npmjs.com/package/@x-studio/zcode";
 
 /// 启动时的输入（入口给出）。
 pub(crate) struct Inputs<'a> {

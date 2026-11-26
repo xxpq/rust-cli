@@ -264,10 +264,10 @@ pub fn failure_text(name: &str, failure: &MachineFailure) -> String {
         ),
         // F107（remote-exec.md §28.6）：这个平台没有包（Intel Mac）、上传的执行器被系统杀掉（签名无效）。文字同旧 tui。
         MachineFailure::NoPackage { package } => format!(
-            "There's no zcode executor package for {name} (it would be {package}), and no compatible executor is installed there. Install zcode on that machine with `npm i -g @mbearo/zcode`, then connect again."
+            "There's no zcode executor package for {name} (it would be {package}), and no compatible executor is installed there. Install zcode on that machine with `npm i -g @x-studio/zcode`, then connect again."
         ),
         MachineFailure::Unsigned => format!(
-            "The uploaded zcode executor was killed on {name}: macOS refuses to run it because its signature is not valid. Install zcode on that machine with `npm i -g @mbearo/zcode`, or sign the file there with `codesign -s -`."
+            "The uploaded zcode executor was killed on {name}: macOS refuses to run it because its signature is not valid. Install zcode on that machine with `npm i -g @x-studio/zcode`, or sign the file there with `codesign -s -`."
         ),
         MachineFailure::Refused(m) => format!("The executor on {name} refused the connection: {m}"),
         MachineFailure::Lost(m) => format!("Lost the connection to {name}: {}", explain(m)),

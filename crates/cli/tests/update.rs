@@ -89,7 +89,7 @@ fn without_a_marker_the_update_command_asks_for_a_manual_update() {
         assert_eq!(output.status.code(), Some(1), "{output:?}");
         assert_eq!(
             text(&output.stderr),
-            "Error: Could not detect the ZCode installation method. Please update manually: https://www.npmjs.com/package/@mbearo/zcode\n"
+            "Error: Could not detect the ZCode installation method. Please update manually: https://www.npmjs.com/package/@x-studio/zcode\n"
         );
         assert!(output.stdout.is_empty(), "{output:?}");
     }
@@ -211,7 +211,7 @@ fn with_a_handoff_the_update_command_writes_the_latest_version_and_runs_nothing(
     assert_eq!(output.status.code(), Some(1), "{output:?}");
     assert_eq!(
         text(&output.stderr),
-        "Error: Could not detect the ZCode installation method. Please update manually: https://www.npmjs.com/package/@mbearo/zcode\n"
+        "Error: Could not detect the ZCode installation method. Please update manually: https://www.npmjs.com/package/@x-studio/zcode\n"
     );
     assert!(!handoff.exists());
     // 交接文件的目录不存在：报系统错误、退出码 1，不起包管理器。

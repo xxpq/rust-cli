@@ -1,10 +1,10 @@
 {
-  "name": "@mbearo/zcode",
+  "name": "@x-studio/zcode",
   "description": "Standalone ZCode Rust CLI",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MBearo/ZCode-rs.git",
+    "url": "git+https://github.com/x-studio/ZCode-rs.git",
     "directory": "scripts/rust-cli/npm/package"
   },
   "bin": {

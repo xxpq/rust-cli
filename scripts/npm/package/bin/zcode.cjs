@@ -295,19 +295,19 @@ async function main() {
       ? process.report.getReport().header.glibcVersionRuntime
       : undefined,
   );
-  const name = `@mbearo/zcode-${selected.id}`;
+  const name = `@x-studio/zcode-${selected.id}`;
   let manifest;
   try {
     manifest = require.resolve(`${name}/package.json`);
   } catch {
     throw new Error(
-      `Missing ${name}@${entry.version}. Reinstall @mbearo/zcode with optional dependencies enabled (npm install -g @mbearo/zcode --include=optional).`,
+      `Missing ${name}@${entry.version}. Reinstall @x-studio/zcode with optional dependencies enabled (npm install -g @x-studio/zcode --include=optional).`,
     );
   }
   const installed = JSON.parse(await readFile(manifest, "utf8"));
   if (installed.version !== entry.version) {
     throw new Error(
-      `${name} version ${installed.version} does not match @mbearo/zcode ${entry.version}`,
+      `${name} version ${installed.version} does not match @x-studio/zcode ${entry.version}`,
     );
   }
   const binary = join(dirname(manifest), "bin", executableFile(selected.os));

@@ -52,7 +52,7 @@ impl ArtifactSource for Registry {
 /// 本机版本 0.2.0 不在注册表里，latest 是 `latest`。
 fn unpublished(latest: Option<&str>) -> Result<PathBuf, DownloadError> {
     Err(DownloadError::Unpublished {
-        reason: "npm package @mbearo/zcode-linux-x64-gnu version 0.2.0 is missing".to_owned(),
+        reason: "npm package @x-studio/zcode-linux-x64-gnu version 0.2.0 is missing".to_owned(),
         latest: latest.map(str::to_owned),
     })
 }
@@ -272,19 +272,19 @@ async fn only_an_unpublished_version_falls_back_to_the_latest() {
         ),
         (
             Err(DownloadError::Failed(
-                "@mbearo/zcode-linux-x64-gnu 0.2.0: the download does not match the registry's sha512 integrity"
+                "@x-studio/zcode-linux-x64-gnu 0.2.0: the download does not match the registry's sha512 integrity"
                     .to_owned(),
             )),
-            "@mbearo/zcode-linux-x64-gnu 0.2.0: the download does not match the registry's sha512 integrity",
+            "@x-studio/zcode-linux-x64-gnu 0.2.0: the download does not match the registry's sha512 integrity",
         ),
         // 不在注册表里，但没有 latest（包从来没发过），或 latest 就是本机的版本。
         (
             unpublished(None),
-            "npm package @mbearo/zcode-linux-x64-gnu version 0.2.0 is missing",
+            "npm package @x-studio/zcode-linux-x64-gnu version 0.2.0 is missing",
         ),
         (
             unpublished(Some("0.2.0")),
-            "npm package @mbearo/zcode-linux-x64-gnu version 0.2.0 is missing",
+            "npm package @x-studio/zcode-linux-x64-gnu version 0.2.0 is missing",
         ),
     ];
     for (result, reason) in cases {
@@ -362,7 +362,7 @@ async fn a_latest_that_cannot_be_downloaded_names_both_versions() {
             (
                 "0.0.0-placeholder".to_owned(),
                 Err(DownloadError::Failed(
-                    "@mbearo/zcode-linux-x64-gnu 0.0.0-placeholder: the package has no bin/zcode-rs"
+                    "@x-studio/zcode-linux-x64-gnu 0.0.0-placeholder: the package has no bin/zcode-rs"
                         .to_owned(),
                 )),
             ),
@@ -375,7 +375,7 @@ async fn a_latest_that_cannot_be_downloaded_names_both_versions() {
         Err(ProvisionError::DownloadFailed {
             version: "0.2.0".to_owned(),
             target: "x86_64-unknown-linux-gnu".to_owned(),
-            reason: "zcode 0.2.0 is not on npm, and the latest, 0.0.0-placeholder, could not be downloaded: @mbearo/zcode-linux-x64-gnu 0.0.0-placeholder: the package has no bin/zcode-rs".to_owned(),
+            reason: "zcode 0.2.0 is not on npm, and the latest, 0.0.0-placeholder, could not be downloaded: @x-studio/zcode-linux-x64-gnu 0.0.0-placeholder: the package has no bin/zcode-rs".to_owned(),
         })
     );
     assert_eq!(registry.downloads(), ["0.2.0", "0.0.0-placeholder"]);

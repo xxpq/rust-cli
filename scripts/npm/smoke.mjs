@@ -129,8 +129,8 @@ async function smoke(directory, id) {
   const selected = platforms.find((item) => item.id === id);
   if (!selected) throw new Error(`Unknown platform ${id}`);
   const files = (await readdir(directory)).filter((file) => file.endsWith(".tgz"));
-  const entry = files.find((file) => file === `mbearo-zcode-${metadata.version}.tgz`);
-  const platform = files.find((file) => file === `mbearo-zcode-${id}-${metadata.version}.tgz`);
+  const entry = files.find((file) => file === `x-studio-zcode-${metadata.version}.tgz`);
+  const platform = files.find((file) => file === `x-studio-zcode-${id}-${metadata.version}.tgz`);
   assert.ok(entry && platform, "Need the entry and native platform tarballs");
   const temp = await mkdtemp(join(tmpdir(), "zcode-npm-smoke-"));
   try {
@@ -147,7 +147,7 @@ async function smoke(directory, id) {
       ],
       { cwd: temp },
     );
-    const launcher = join(temp, "node_modules/@mbearo/zcode/bin/zcode.cjs");
+    const launcher = join(temp, "node_modules/@x-studio/zcode/bin/zcode.cjs");
     const env = { ...process.env, HOME: temp, USERPROFILE: temp, ZCODE_DATA_BASE_DIR: temp };
     const version = await run(process.execPath, [launcher, "--version"], { cwd: temp, env });
     assert.equal(version.code, 0, version.stderr);
@@ -169,7 +169,7 @@ async function smoke(directory, id) {
       `npm install smoke: ${id}: session store opened, ${rows.length} migration checksums match Node`,
     );
 
-    const installed = join(temp, `node_modules/@mbearo/zcode-${id}`);
+    const installed = join(temp, `node_modules/@x-studio/zcode-${id}`);
     const missing = await installedPlatformProblems(installed, selected.os);
     assert.deepEqual(missing, [], `platform package: ${missing.join(", ")}`);
     const native = join(installed, "bin", executableFile(selected.os));

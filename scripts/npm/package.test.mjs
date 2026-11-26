@@ -274,7 +274,7 @@ test(
     const entry = join(temp, "node_modules", ENTRY);
     await copyEntry(entry);
     const platform = selectPlatform(process.platform, process.arch, "2.35");
-    const native = join(temp, `node_modules/@mbearo/zcode-${platform.id}`);
+    const native = join(temp, `node_modules/@x-studio/zcode-${platform.id}`);
     await mkdir(join(native, "bin"), { recursive: true });
     await writeFile(join(native, "package.json"), JSON.stringify({ version: metadata.version }));
     // 启动器 execve 平台包里的 bin/zcode-rs（命令名仍是 zcode）。
@@ -302,7 +302,7 @@ test(
         assert.deepEqual(seen.markers, {
           ZCODE_MANAGED_BY_NPM: "1",
           ZCODE_MANAGED_PACKAGE: ENTRY,
-          ZCODE_MANAGED_PLATFORM_PACKAGE: `@mbearo/zcode-${platform.id}`,
+          ZCODE_MANAGED_PLATFORM_PACKAGE: `@x-studio/zcode-${platform.id}`,
         });
         return true;
       },
@@ -328,18 +328,18 @@ test("the launcher replaces inherited update markers with its own", () => {
     },
     "pnpm",
     ENTRY,
-    "@mbearo/zcode-darwin-arm64",
+    "@x-studio/zcode-darwin-arm64",
   );
   assert.deepEqual(env, {
     PATH: "/usr/bin",
     ZCODE_MANAGED_BY_PNPM: "1",
     ZCODE_MANAGED_PACKAGE: ENTRY,
-    ZCODE_MANAGED_PLATFORM_PACKAGE: "@mbearo/zcode-darwin-arm64",
+    ZCODE_MANAGED_PLATFORM_PACKAGE: "@x-studio/zcode-darwin-arm64",
   });
 });
 
 test("Unix execve and Windows spawn both carry the update markers", () => {
-  const env = managedEnv({ PATH: "/usr/bin" }, "npm", ENTRY, "@mbearo/zcode-win32-x64");
+  const env = managedEnv({ PATH: "/usr/bin" }, "npm", ENTRY, "@x-studio/zcode-win32-x64");
   const calls = [];
   const execve = (...args) => calls.push(["execve", ...args]);
   const spawnChild = (...args) => {
@@ -392,12 +392,12 @@ test("the package manager is detected from pnpm and bun traces, npm otherwise", 
   // pnpm 全局安装：node_modules/.modules.yaml，入口包是指向 .pnpm 里真实目录的链接。
   const store = join(
     temp,
-    `pnpm/global/5/node_modules/.pnpm/@mbearo+zcode@0.1.46/node_modules/${ENTRY}`,
+    `pnpm/global/5/node_modules/.pnpm/@x-studio+zcode@0.1.46/node_modules/${ENTRY}`,
   );
   await mkdir(store, { recursive: true });
   const modules = join(temp, "pnpm/global/5/node_modules");
   await writeFile(join(modules, ".modules.yaml"), "layoutVersion: 5\n");
-  await mkdir(join(modules, "@mbearo"), { recursive: true });
+  await mkdir(join(modules, "@x-studio"), { recursive: true });
   await symlink(store, join(modules, ENTRY), "dir");
   const pnpm = {
     packageRoot: await realpath(store),
@@ -511,7 +511,7 @@ test("Windows runs the update after zcode.exe exits, with the command the launch
   assert.deepEqual(second, [
     "spawn",
     // 扩展名的写法取 PATHEXT 的（文件名不分大小写）。
-    '"C:\\nodejs\\npm.CMD" install -g @mbearo/zcode@0.1.55',
+    '"C:\\nodejs\\npm.CMD" install -g @x-studio/zcode@0.1.55',
     {
       stdio: "inherit",
       cwd: join("/t", "zcode-update-abc"),
@@ -522,7 +522,7 @@ test("Windows runs the update after zcode.exe exits, with the command the launch
   ]);
   assert.equal(
     fake.out.stdout,
-    "\nUpdating ZCode via `npm install -g @mbearo/zcode@0.1.55`...\n\n🎉 Update ran successfully! Please restart ZCode.\n",
+    "\nUpdating ZCode via `npm install -g @x-studio/zcode@0.1.55`...\n\n🎉 Update ran successfully! Please restart ZCode.\n",
   );
   assert.equal(fake.out.stderr, "");
   // 交接文件读后删掉，临时工作目录用完删掉。
@@ -538,18 +538,18 @@ test("the exit code is the package manager's, and a missing command is an error"
   assert.equal(await windows(failed.io), 5);
   assert.equal(
     failed.out.stdout,
-    "\nUpdating ZCode via `npm install -g @mbearo/zcode@latest`...\n",
+    "\nUpdating ZCode via `npm install -g @x-studio/zcode@latest`...\n",
   );
   assert.equal(
     failed.out.stderr,
-    "Error: `npm install -g @mbearo/zcode@latest` failed with status exit code: 5\n",
+    "Error: `npm install -g @x-studio/zcode@latest` failed with status exit code: 5\n",
   );
   // 只有相对路径项里有 npm：找不到，退出码 1，不起包管理器。
   const missing = fakeIo({ child: handsOff("0.1.55"), commands: [] });
   assert.equal(await windows(missing.io), 1);
   assert.equal(
     missing.out.stderr,
-    "Error: Could not find an absolute update command `npm` on PATH. Please update manually: https://www.npmjs.com/package/@mbearo/zcode\n",
+    "Error: Could not find an absolute update command `npm` on PATH. Please update manually: https://www.npmjs.com/package/@x-studio/zcode\n",
   );
   assert.equal(missing.calls.filter((call) => call[0] === "spawn").length, 1);
   // 起不来：系统错误，退出码 1。
@@ -613,22 +613,22 @@ test("the update command is built from the launcher's own manager and package", 
     "npm",
     "install",
     "-g",
-    "@mbearo/zcode@0.1.55",
+    "@x-studio/zcode@0.1.55",
   ]);
   assert.deepEqual(updateCommand("pnpm", ENTRY, "latest"), [
     "pnpm",
     "add",
     "-g",
-    "@mbearo/zcode@latest",
+    "@x-studio/zcode@latest",
   ]);
   assert.deepEqual(updateCommand("bun", ENTRY, "0.1.55"), [
     "bun",
     "install",
     "-g",
-    "@mbearo/zcode@0.1.55",
+    "@x-studio/zcode@0.1.55",
   ]);
   assert.throws(() => updateCommand("npm", ENTRY, "1.2"), /invalid/u);
-  assert.throws(() => updateCommand("npm", "@mbearo/zcode&x", "1.2.3"), /invalid/u);
+  assert.throws(() => updateCommand("npm", "@x-studio/zcode&x", "1.2.3"), /invalid/u);
   assert.throws(() => updateCommand("yarn", ENTRY, "1.2.3"), /invalid/u);
 });
 

@@ -356,8 +356,8 @@ impl Registry {
     pub fn publish(&self, id: &str, version: &str, tarball: Vec<u8>) -> (String, String) {
         use base64::Engine;
         use sha2::{Digest, Sha512};
-        let name = format!("@mbearo/zcode-{id}");
-        let packument = format!("/@mbearo%2fzcode-{id}");
+        let name = format!("@x-studio/zcode-{id}");
+        let packument = format!("/@x-studio%2fzcode-{id}");
         let tarball_path = format!("/{name}/-/zcode-{id}-{version}.tgz");
         let integrity = format!(
             "sha512-{}",

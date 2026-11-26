@@ -119,19 +119,19 @@ fn downloads_musl_and_old_glibc_are_said_plainly() {
     };
     assert_eq!(
         failure_text(Lang::En, "mac-2", &no_package),
-        "There's no zcode executor package for mac-2 (it would be darwin-x64), and no compatible executor is installed there. Install zcode on that machine with `npm i -g @mbearo/zcode`, then connect again."
+        "There's no zcode executor package for mac-2 (it would be darwin-x64), and no compatible executor is installed there. Install zcode on that machine with `npm i -g @x-studio/zcode`, then connect again."
     );
     assert_eq!(
         failure_text(Lang::Zh, "mac-2", &no_package),
-        "没有 mac-2 这种平台的 zcode 执行器包（应该是 darwin-x64），那台机器上也没有兼容的执行器。请在那台机器上用 `npm i -g @mbearo/zcode` 装好 zcode，然后再连。"
+        "没有 mac-2 这种平台的 zcode 执行器包（应该是 darwin-x64），那台机器上也没有兼容的执行器。请在那台机器上用 `npm i -g @x-studio/zcode` 装好 zcode，然后再连。"
     );
     assert_eq!(
         failure_text(Lang::En, "mac-2", &MachineFailure::Unsigned),
-        "The uploaded zcode executor was killed on mac-2: macOS refuses to run it because its signature is not valid. Install zcode on that machine with `npm i -g @mbearo/zcode`, or sign the file there with `codesign -s -`."
+        "The uploaded zcode executor was killed on mac-2: macOS refuses to run it because its signature is not valid. Install zcode on that machine with `npm i -g @x-studio/zcode`, or sign the file there with `codesign -s -`."
     );
     assert_eq!(
         failure_text(Lang::Zh, "mac-2", &MachineFailure::Unsigned),
-        "上传到 mac-2 的 zcode 执行器被系统杀掉了：macOS 认为它的签名无效，不让它运行。请在那台机器上用 `npm i -g @mbearo/zcode` 装好 zcode，或者在那台机器上用 `codesign -s -` 给它签名。"
+        "上传到 mac-2 的 zcode 执行器被系统杀掉了：macOS 认为它的签名无效，不让它运行。请在那台机器上用 `npm i -g @x-studio/zcode` 装好 zcode，或者在那台机器上用 `codesign -s -` 给它签名。"
     );
     assert_eq!(
         failure_text(Lang::En, "dev-a", &MachineFailure::Musl),

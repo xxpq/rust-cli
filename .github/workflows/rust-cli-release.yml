@@ -108,7 +108,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: npm-${{ matrix.id }}
-          path: dist/rust-cli-npm/mbearo-zcode-${{ matrix.id }}-*.tgz
+          path: dist/rust-cli-npm/x-studio-zcode-${{ matrix.id }}-*.tgz
           if-no-files-found: error
           retention-days: 3
 
@@ -166,6 +166,6 @@ jobs:
             每次推送到 main 都会复用同一版本的 Release 并覆盖同名资产文件。npm 包的发布仍通过 `workflow_dispatch` + `publish` 手动触发。
           reuse_releases: true
           overwrite: true
-          files: dist/rust-cli-npm/mbearo-zcode-*-*.tgz
+          files: dist/rust-cli-npm/x-studio-zcode-*-*.tgz
           draft: false
           prerelease: false

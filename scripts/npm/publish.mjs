@@ -10,7 +10,7 @@ import { NPM_REGISTRY } from "../fixture/model.mjs";
 const exec = promisify(execFile);
 const directory = resolve(process.argv[2]);
 const dryRun = process.argv.includes("--dry-run");
-const names = [...platforms.map((item) => `@mbearo/zcode-${item.id}`), metadata.name];
+const names = [...platforms.map((item) => `@x-studio/zcode-${item.id}`), metadata.name];
 const files = (await readdir(directory)).filter((file) => file.endsWith(".tgz"));
 const packages = new Map();
 for (const file of files) {
