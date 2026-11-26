@@ -151,7 +151,7 @@ test("the command is zcode and the native executable is zcode-rs, or zcode.exe o
   assert.equal(executableFile("darwin"), "zcode-rs");
   assert.equal(executableFile("linux"), "zcode-rs");
   assert.equal(`bin/${executableFile("win32")}`, "bin/zcode.exe");
-  assert.match(NOTICES, /packages[\\/]rust-cli[\\/]vendor[\\/]THIRD-PARTY-NOTICES\.txt$/u);
+  assert.match(NOTICES, /vendor[\\/]THIRD-PARTY-NOTICES\.txt$/u);
 });
 
 test("platform packages contain only binary, provenance, license, notices and metadata", async (t) => {

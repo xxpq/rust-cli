@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// rust-cli 的计数文件 packages/rust-cli/build-number（docs/specs/rust-cli/version.md §2、§4、§5）。
+// rust-cli 的计数文件 build-number（docs/specs/rust-cli/version.md §2、§4、§5）。
 //
 //   node scripts/rust-cli/build-number.mjs release          发版：读文件、加 1、原子写回，打印新版本
 //   node scripts/rust-cli/build-number.mjs merge %O %A %B   git 合并驱动：两边取较大值写进 %A
@@ -9,10 +9,10 @@ import { readFile, rename, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const root = resolve(import.meta.dirname, "../..");
-export const workspace = join(root, "packages/rust-cli");
-export const counterFile = join(workspace, "build-number");
-export const manifestFile = join(workspace, "Cargo.toml");
+const root = resolve(import.meta.dirname, "..");
+export const workspace = root;
+export const counterFile = join(root, "build-number");
+export const manifestFile = join(root, "Cargo.toml");
 
 /** 计数：去掉首尾空白后的一个十进制整数。 */
 export function parseBuildNumber(text) {

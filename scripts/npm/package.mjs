@@ -12,13 +12,28 @@ const exec = promisify(execFile);
 // 平台包里的可执行文件名只在启动器里定义（命令名 `zcode`；可执行文件 `zcode-rs`，Windows `zcode.exe`）。传进来的是 cargo
 // 产物（三个平台都叫 zcode-rs），复制时改成这个名字。
 const { executableFile } = createRequire(import.meta.url)("./package/bin/zcode.cjs");
-export const root = resolve(import.meta.dirname, "../../..");
 export const template = join(import.meta.dirname, "package");
 /**
- * 内嵌的 rg、bfs、ugrep 与它们依赖的第三方许可证声明（packages/rust-cli/vendor 下生成并提交，每个平台包都带同一份；
+ * 向上查找包含 Cargo.toml 的目录作为仓库根目录（兼容原仓库与 worktree 两种结构）。
+ */
+async function findRepoRoot(startDir) {
+  let dir = startDir;
+  while (dir !== resolve(dir, "..")) {
+    try {
+      await stat(join(dir, "Cargo.toml"));
+      return dir;
+    } catch {
+      dir = resolve(dir, "..");
+    }
+  }
+  throw new Error("Cannot find repository root (no Cargo.toml found)");
+}
+export const root = await findRepoRoot(import.meta.dirname);
+/**
+ * 内嵌的 rg、bfs、ugrep 与它们依赖的第三方许可证声明（vendor 下生成并提交，每个平台包都带同一份；
  * 入口包不带二进制，不需要）。
  */
-export const NOTICES = join(root, "packages/rust-cli/vendor/THIRD-PARTY-NOTICES.txt");
+export const NOTICES = join(root, "vendor/THIRD-PARTY-NOTICES.txt");
 export const platforms = JSON.parse(await readFile(join(template, "platforms.json"), "utf8"));
 const declared = JSON.parse(await readFile(join(template, "package.json"), "utf8"));
 
@@ -51,13 +66,13 @@ export function validateBinary(bytes, platform) {
 }
 
 /**
- * 入口包与平台包的版本：Cargo workspace 的 major.minor 加 packages/rust-cli/build-number，
+ * 入口包与平台包的版本：Cargo workspace 的 major.minor 加 build-number，
  * 与 release 编译校验 ZCODE_RELEASE_VERSION 用的是同一个号。模板 package.json 不写版本。
  */
 export async function verifyVersion({ manifest, counter } = {}) {
   if ("version" in declared) {
     throw new Error(
-      "scripts/rust-cli/npm/package/package.json must not declare a version; it comes from packages/rust-cli/build-number",
+      "scripts/rust-cli/npm/package/package.json must not declare a version; it comes from build-number",
     );
   }
   return currentVersion({ manifest, counter });

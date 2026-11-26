@@ -24,10 +24,20 @@ import { npm } from "./npm.mjs";
 const { executableFile } = createRequire(import.meta.url)("./package/bin/zcode.cjs");
 
 /** 期望的校验和：rust 单测里与 Node 账本逐项核对过的表（`EXPECTED`）。 */
-export const LEDGER_TABLE = resolve(
-  import.meta.dirname,
-  "../../../packages/rust-cli/crates/node-store/src/repo/migrations_tests.rs",
-);
+async function findMigrationsTests(startDir) {
+  let dir = startDir;
+  while (dir !== resolve(dir, "..")) {
+    const candidate = join(dir, "crates", "node-store", "src", "repo", "migrations_tests.rs");
+    try {
+      await stat(candidate);
+      return candidate;
+    } catch {
+      dir = resolve(dir, "..");
+    }
+  }
+  throw new Error("Cannot find migrations_tests.rs");
+}
+export const LEDGER_TABLE = await findMigrationsTests(import.meta.dirname);
 /** 会话库在 HOME 下的位置（Node 与 rust 的缺省值）。 */
 export const DATABASE = [".zcode", "cli", "db", "db.sqlite"];
 /** `-p -c` 在没有会话时的报错原文。 */
